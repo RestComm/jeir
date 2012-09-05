@@ -9,7 +9,7 @@
 		</constructor>
 		<property name="persistDir">${jboss.server.data.dir}</property>
 		<property name="singleThread">true</property>
-		<property name="connectDelay">30000</property>
+		<property name="connectDelay">5000</property>
 	</bean>
 
 	<bean name="SCTPShellExecutor"
@@ -17,7 +17,19 @@
 		<property name="sctpManagement">
 			<inject bean="SCTPManagement" />
 		</property>
-	</bean>	
+	</bean>
+
+	<!-- ==================================================================== -->
+	<!-- MTP3 Properties -->
+	<!-- Define MTP3 PointCode Format -->
+	<!-- ==================================================================== -->
+	<bean name="RoutingLabelFormat" class="org.mobicents.protocols.ss7.mtp.RoutingLabelFormat">
+		<constructor factoryClass="org.mobicents.protocols.ss7.mtp.RoutingLabelFormat"
+			factoryMethod="getInstance">
+			<parameter>ITU</parameter>
+		</constructor>
+	</bean>
+
 	<!-- ==================================================================== -->
 	<!-- M3UA -->
 	<!-- M3UAManagement is managing the m3ua side commands -->
@@ -27,10 +39,12 @@
 		<constructor>
 			<parameter>Mtp3UserPart</parameter>
 		</constructor>
-		<property name="maxSequenceNumber">256</property>
 		<property name="persistDir">${jboss.server.data.dir}</property>
 		<property name="transportManagement">
 			<inject bean="SCTPManagement" />
+		</property>
+		<property name="routingLabelFormat">
+			<inject bean="RoutingLabelFormat" />
 		</property>
 	</bean>
 
@@ -40,7 +54,7 @@
 			<inject bean="Mtp3UserPart" />
 		</property>
 	</bean>
-	
+
 	<!-- ==================================================================== -->
 	<!-- Scheduler -->
 	<!-- Scheduler for ss7 stack -->
@@ -53,7 +67,7 @@
 		<property name="clock">
 			<inject bean="SS7Clock" />
 		</property>
-	</bean>	
+	</bean>
 
 	<!-- ==================================================================== -->
 	<!-- Dialogic Mtp3UserPart -->
@@ -91,6 +105,30 @@
 	</bean>
 
 	<!-- ==================================================================== -->
+	<!-- Shell Service -->
+	<!-- ==================================================================== -->
+	<!-- Define Shell Executor -->
+	<bean name="ShellExecutor" class="org.mobicents.ss7.management.console.ShellServer">
+		<constructor>
+			<parameter>
+				<inject bean="SS7Scheduler" />
+			</parameter>
+			<parameter>
+				<list class="javolution.util.FastList"
+					elementClass="org.mobicents.ss7.management.console.ShellExecutor">
+					<inject bean="SccpExecutor" />
+					<inject bean="M3UAShellExecutor" />
+					<inject bean="SCTPShellExecutor" />
+					<!-- <inject bean="EIRShellExecutor" /> -->
+				</list>
+			</parameter>
+		</constructor>
+
+		<property name="address">${jboss.bind.address}</property>
+		<property name="port">3435</property>
+	</bean>
+
+	<!-- ==================================================================== -->
 	<!-- TCAP Service -->
 	<!-- ==================================================================== -->
 	<bean name="TcapStack" class="org.mobicents.protocols.ss7.tcap.TCAPStackImpl">
@@ -117,29 +155,6 @@
 	</bean>
 
 	<!-- ==================================================================== -->
-	<!-- Shell Service -->
-	<!-- ==================================================================== -->
-	<!-- Define Shell Executor -->
-	<bean name="ShellExecutor" class="org.mobicents.ss7.management.console.ShellServer">
-		<constructor>
-			<parameter>
-				<inject bean="SS7Scheduler" />
-			</parameter>
-			<parameter>
-				<list class="javolution.util.FastList" elementClass="org.mobicents.ss7.management.console.ShellExecutor">
-					<inject bean="SccpExecutor" />
-					<inject bean="M3UAShellExecutor" />
-					<inject bean="SCTPShellExecutor" />
-					<inject bean="EIRShellExecutor" />
-				</list>
-			</parameter>
-		</constructor>
-
-		<property name="address">${jboss.bind.address}</property>
-		<property name="port">3435</property>
-	</bean>
-
-	<!-- ==================================================================== -->
 	<!-- Mobicents SS7 Service -->
 	<!-- ==================================================================== -->
 	<bean name="MAPSS7Service" class="org.mobicents.eir.server.bootstrap.SS7Service">
@@ -152,84 +167,14 @@
 	</bean>
 
 	<!-- ==================================================================== -->
-	<!-- SMPP Server Stack -->
-	<!-- ==================================================================== -->
-	<bean name="SMPPServer" class="org.mobicents.eir.smpp.SmppServer">
-		<!-- the name of the server that is used for some logging and naming of 
-			threads -->
-		<property name="name">SmppServer</property>
-
-		<!-- Port where server socket is bound -->
-		<property name="port">2776</property>
-
-		<!-- Set the amount of time to allow a connection to finish binding into 
-			the server before the server automatically closes the connection. -->
-		<property name="bindTimeout">5000</property>
-
-		<!-- Set the system id that will be returned in a bind response. -->
-		<property name="systemId">MobicentsEIR</property>
-
-		<!-- Enables or disables auto sc_interface_version negotiation. If the 
-			version from the client <= 3.3 then the client version is 3.3. If the version 
-			from the client >= 3.4 then the client version will be 3.4 and the prepared 
-			bind response will include the optional parameter sc_interface_version. -->
-		<property name="autoNegotiateInterfaceVersion">true</property>
-
-		<!-- Set the maximum number of connections this server is configured to 
-			handle. -->
-		<property name="maxConnectionSize">10</property>
-
-		<!-- The window "size" is the amount of unacknowledged requests that are 
-			permitted to be outstanding/unacknowledged at any given time. -->
-		<property name="defaultWindowSize">100</property>
-
-		<!-- Set the amount of time to wait until a slot opens up in the sendWindow -->
-		<property name="defaultWindowWaitTimeout">30000</property>
-
-		<!-- Set the amount of time to wait for an endpoint to respond to a request 
-			before it expires. Defaults to disabled (-1). -->
-		<property name="defaultRequestExpiryTimeout">30000</property>
-
-		<!-- Sets the amount of time between executions of monitoring the window 
-			for requests that expire. It's recommended that this generally either matches 
-			or is half the value of requestExpiryTimeout. Therefore, at worst a request 
-			would could take up 1.5X the requestExpiryTimeout to clear out. -->
-		<property name="defaultWindowMonitorInterval">15000</property>
-
-		<!-- Tracks counters for SMPP operations -->
-		<property name="defaultSessionCountersEnabled">true</property>
-	</bean>
-
-	<!-- ==================================================================== -->
-	<!-- SMPP Server Service -->
-	<!-- ==================================================================== -->
-	<bean name="SMPPServerService" class="org.mobicents.eir.smpp.SMPPServerService">
-		<annotation>@org.jboss.aop.microcontainer.aspects.jmx.JMX(name="org.mobicents.eir:service=SMPPServerService",exposedInterface=org.mobicents.eir.smpp.SMPPServerServiceMBean.class,registerDirectly=true)
-		</annotation>
-		<property name="jndiName">java:/mobicents/eir/smpphandler</property>
-		<property name="defaultSmppServerHandler">
-			<inject bean="SMPPServer" property="defaultSmppServerHandler" />
-		</property>
-	</bean>
-
-	<!-- ==================================================================== -->
 	<!-- EIR -->
 	<!-- EirManagement is managing the all EIR server commands -->
 	<!-- ==================================================================== -->
-	<bean name="EirManagement" class="org.mobicents.eir.smpp.EirManagement">
-		<constructor>
-			<parameter>EirManagement</parameter>
-		</constructor>
-		<property name="persistDir">${jboss.server.data.dir}</property>
-		<property name="smppServer">
-			<inject bean="SMPPServer" />
-		</property>
-	</bean>
-
-	<bean name="EIRShellExecutor" class="org.mobicents.eir.smpp.EIRShellExecutor">
-		<property name="eirManagement">
-			<inject bean="EirManagement" />
-		</property>
-	</bean>
+	<!-- <bean name="EirManagement" class="org.mobicents.eir.smpp.EirManagement"> 
+		<constructor> <parameter>EirManagement</parameter> </constructor> <property 
+		name="persistDir">${jboss.server.data.dir}</property> <property name="smppServer"> 
+		<inject bean="SMPPServer" /> </property> </bean> <bean name="EIRShellExecutor" 
+		class="org.mobicents.eir.smpp.EIRShellExecutor"> <property name="eirManagement"> 
+		<inject bean="EirManagement" /> </property> </bean> -->
 
 </deployment>
