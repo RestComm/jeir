@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <aspFactoryList>
-	<aspFactory name="ASP1" assocName="SCTPAssoc1" started="true" maxseqnumber="256"/>
+	<aspFactory name="ASP1" assocName="SCTPAssoc1" started="true" maxseqnumber="256" aspid="3"/>
 </aspFactoryList>
 <asList>
 	<as name="AS1" minAspActiveForLb="1" functionality="IPSP" exchangeType="SE" ipspType="SERVER">

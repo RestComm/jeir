@@ -10,11 +10,4 @@
 		<property name="ssn">8</property>
 	</bean>
 
-	<bean name="EIR" class="org.mobicents.eir.ihub.MAPSimulator">
-		<property name="sccpStack">
-			<inject bean="SccpStack" />
-		</property>
-		<property name="ssn">9</property>
-	</bean>
-
 </deployment>

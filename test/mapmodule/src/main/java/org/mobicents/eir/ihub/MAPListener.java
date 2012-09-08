@@ -22,12 +22,9 @@
 
 package org.mobicents.eir.ihub;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.apache.log4j.Logger;
 import org.mobicents.protocols.ss7.map.api.MAPDialog;
 import org.mobicents.protocols.ss7.map.api.MAPDialogListener;
-import org.mobicents.protocols.ss7.map.api.MAPException;
 import org.mobicents.protocols.ss7.map.api.MAPMessage;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPAbortProviderReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPAbortSource;
@@ -37,12 +34,9 @@ import org.mobicents.protocols.ss7.map.api.dialog.MAPRefuseReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPUserAbortChoice;
 import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessage;
 import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessageFactory;
-import org.mobicents.protocols.ss7.map.api.primitives.AddressNature;
 import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.primitives.NumberingPlan;
 import org.mobicents.protocols.ss7.map.api.service.mobility.MAPServiceMobilityListener;
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoResponse;
@@ -52,30 +46,6 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.U
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationResponse;
-import org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreRequest;
-import org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreResponse;
-import org.mobicents.protocols.ss7.map.api.service.sms.ForwardShortMessageRequest;
-import org.mobicents.protocols.ss7.map.api.service.sms.ForwardShortMessageResponse;
-import org.mobicents.protocols.ss7.map.api.service.sms.InformServiceCentreRequest;
-import org.mobicents.protocols.ss7.map.api.service.sms.LocationInfoWithLMSI;
-import org.mobicents.protocols.ss7.map.api.service.sms.MAPDialogSms;
-import org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSmsListener;
-import org.mobicents.protocols.ss7.map.api.service.sms.MoForwardShortMessageRequest;
-import org.mobicents.protocols.ss7.map.api.service.sms.MoForwardShortMessageResponse;
-import org.mobicents.protocols.ss7.map.api.service.sms.MtForwardShortMessageRequest;
-import org.mobicents.protocols.ss7.map.api.service.sms.MtForwardShortMessageResponse;
-import org.mobicents.protocols.ss7.map.api.service.sms.ReportSMDeliveryStatusRequest;
-import org.mobicents.protocols.ss7.map.api.service.sms.ReportSMDeliveryStatusResponse;
-import org.mobicents.protocols.ss7.map.api.service.sms.SendRoutingInfoForSMRequest;
-import org.mobicents.protocols.ss7.map.api.service.sms.SendRoutingInfoForSMResponse;
-import org.mobicents.protocols.ss7.map.api.service.sms.SmsSignalInfo;
-import org.mobicents.protocols.ss7.map.api.smstpdu.AddressField;
-import org.mobicents.protocols.ss7.map.api.smstpdu.SmsSubmitTpdu;
-import org.mobicents.protocols.ss7.map.api.smstpdu.SmsTpdu;
-import org.mobicents.protocols.ss7.map.api.smstpdu.SmsTpduType;
-import org.mobicents.protocols.ss7.map.primitives.IMSIImpl;
-import org.mobicents.protocols.ss7.map.primitives.ISDNAddressStringImpl;
-import org.mobicents.protocols.ss7.map.service.sms.LocationInfoWithLMSIImpl;
 import org.mobicents.protocols.ss7.tcap.asn.ApplicationContextName;
 import org.mobicents.protocols.ss7.tcap.asn.comp.Problem;
 
@@ -84,9 +54,6 @@ public class MAPListener implements MAPDialogListener, MAPServiceMobilityListene
 	private static final Logger logger = Logger.getLogger(MAPListener.class);
 
 	private MAPSimulator iHubManagement = null;
-
-	private final AtomicLong mapMessagesReceivedCounter = new AtomicLong(0);
-	private long currentMapMessageCount = 0;
 
 	private final MAPErrorMessageFactory mAPErrorMessageFactory;
 
@@ -145,9 +112,10 @@ public class MAPListener implements MAPDialogListener, MAPServiceMobilityListene
 	}
 
 	@Override
-	public void onCheckImeiResponse(CheckImeiResponse arg0) {
-		// TODO Auto-generated method stub
+	public void onCheckImeiResponse(CheckImeiResponse checkImeiResponse) {
+		logger.info("MAPListener.onCheckImeiResponse");
 		
+		logger.info("DialogId: " + checkImeiResponse.getMAPDialog().getDialogId() + ". EquipmentStatus: " + checkImeiResponse.getEquipmentStatus());
 	}
 
 	@Override
@@ -249,7 +217,4 @@ public class MAPListener implements MAPDialogListener, MAPServiceMobilityListene
 		
 	}
 
-	
-
-	
 }

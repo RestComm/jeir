@@ -4,26 +4,26 @@
 	<Value type="rule" ruleType="Solitary" loadSharingAlgo="Undefined" mask="K" paddress="1" saddress="-1">
 		<pattern type="org.mobicents.protocols.ss7.sccp.parameter.SccpAddress" pc="0" ssn="8">
 			<ai type="org.mobicents.protocols.ss7.indicator.AddressIndicator" ai="18"/>
-			<gt type="org.mobicents.protocols.ss7.sccp.parameter.GT0100" tt="0" es="2" np="1" nai="4" digits="923330053058"/>
+			<gt type="org.mobicents.protocols.ss7.sccp.parameter.GT0100" tt="0" es="2" np="1" nai="4" digits="553496629938"/>
 		</pattern>
 	</Value>
 	<Key type="java.lang.Integer" value="2"/>
 	<Value type="rule" ruleType="Solitary" loadSharingAlgo="Undefined" mask="K" paddress="2" saddress="-1">
-		<pattern type="org.mobicents.protocols.ss7.sccp.parameter.SccpAddress" pc="0" ssn="0">
-			<ai type="org.mobicents.protocols.ss7.indicator.AddressIndicator" ai="16"/>
-			<gt type="org.mobicents.protocols.ss7.sccp.parameter.GT0100" tt="0" es="1" np="1" nai="4" digits="*"/>
+		<pattern type="org.mobicents.protocols.ss7.sccp.parameter.SccpAddress" pc="0" ssn="9">
+			<ai type="org.mobicents.protocols.ss7.indicator.AddressIndicator" ai="18"/>
+			<gt type="org.mobicents.protocols.ss7.sccp.parameter.GT0100" tt="0" es="2" np="1" nai="4" digits="*"/>
 		</pattern>
 	</Value>
 </rule>
 <primaryAddress>
 	<Key type="java.lang.Integer" value="1"/>
-	<Value type="org.mobicents.protocols.ss7.sccp.parameter.SccpAddress" pc="1" ssn="8">
+	<Value type="org.mobicents.protocols.ss7.sccp.parameter.SccpAddress" pc="2" ssn="8">
 		<ai type="org.mobicents.protocols.ss7.indicator.AddressIndicator" ai="19"/>
-		<gt type="org.mobicents.protocols.ss7.sccp.parameter.GT0100" tt="0" es="2" np="1" nai="4" digits="923330053058"/>
+		<gt type="org.mobicents.protocols.ss7.sccp.parameter.GT0100" tt="0" es="2" np="1" nai="4" digits="553496629938"/>
 	</Value>
 	<Key type="java.lang.Integer" value="2"/>
-	<Value type="org.mobicents.protocols.ss7.sccp.parameter.SccpAddress" pc="2" ssn="0">
-		<ai type="org.mobicents.protocols.ss7.indicator.AddressIndicator" ai="17"/>
+	<Value type="org.mobicents.protocols.ss7.sccp.parameter.SccpAddress" pc="1" ssn="-1">
+		<ai type="org.mobicents.protocols.ss7.indicator.AddressIndicator" ai="19"/>
 		<gt type="org.mobicents.protocols.ss7.sccp.parameter.GT0100" tt="0" es="1" np="1" nai="4" digits="-"/>
 	</Value>
 </primaryAddress>

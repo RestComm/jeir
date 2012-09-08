@@ -41,7 +41,6 @@ public class MAPSimulator {
 	private MAPListener mapListener = null;
 
 	public MAPSimulator() {
-
 	}
 
 	public SccpStackImpl getSccpStack() {
@@ -64,7 +63,7 @@ public class MAPSimulator {
 		// Create MAP Stack and register listener
 		this.mapStack = new MAPStackImpl(this.sccpStack.getSccpProvider(), this.getSsn());
 		this.mapProvider = this.mapStack.getMAPProvider();
-
+		
 		this.mapListener = new MAPListener(this);
 
 		this.mapProvider.addMAPDialogListener(this.mapListener);
@@ -73,14 +72,15 @@ public class MAPSimulator {
 		this.mapProvider.getMAPServiceMobility().acivate();
 
 		this.mapStack.start();
-
+		
+		this.sccpStack.getSccpProvider().registerSccpListener(1, new MSCSccpListener(mapProvider));
 	}
-
+	
 	public void stop() {
 		this.mapStack.stop();
 	}
 
-	protected MAPProvider getMapProvider() {
+	public MAPProvider getMapProvider() {
 		return mapProvider;
 	}
 
