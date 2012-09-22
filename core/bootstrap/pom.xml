@@ -22,7 +22,14 @@
 			<version>${jboss.version}</version>
 			<scope>compile</scope>
 		</dependency>
-	
+		
+		<!-- Cassandra client -->
+		<dependency>
+    		<groupId>me.prettyprint</groupId>
+    		<artifactId>hector-core</artifactId>
+    		<version>${hector.core.version}</version>
+		</dependency>
+		
 		<!-- javolution -->
 		<dependency>
 			<groupId>javolution</groupId>

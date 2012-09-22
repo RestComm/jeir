@@ -24,6 +24,9 @@ package org.mobicents.eir.slee.services.checkimei;
 
 import javax.slee.ActivityContextInterface;
 
+import org.mobicents.eir.slee.persistence.dao.BlackListDAO;
+import org.mobicents.eir.slee.persistence.dao.DAOFactory;
+import org.mobicents.eir.slee.persistence.model.BlackList;
 import org.mobicents.protocols.ss7.map.api.MAPException;
 import org.mobicents.protocols.ss7.map.api.primitives.IMEI;
 import org.mobicents.protocols.ss7.map.api.service.mobility.MAPDialogMobility;
@@ -44,10 +47,22 @@ public abstract class CheckImeiSbb extends CheckImeiCommonSbb {
 	public void onCheckImeiRequest(CheckImeiRequest event, ActivityContextInterface aci) {
 		IMEI imei = event.getIMEI();
 
-		EquipmentStatus equipmentStatus = EquipmentStatus.whiteListed;
+		EquipmentStatus equipmentStatus = getEquipmentStatusByImeiValidation(imei.getIMEI());
 
-		// TODO: Query database to check IMEI list
 		sendCheckImeiResponse(event, equipmentStatus);
+	}
+
+	private EquipmentStatus getEquipmentStatusByImeiValidation(String imei) {
+		EquipmentStatus res = EquipmentStatus.whiteListed;
+		
+		BlackListDAO blDAO = DAOFactory.getDAOFactory().getBlackListDAO();
+		BlackList bl = blDAO.getByImei(imei);
+		
+		if (bl != null) {
+			res = EquipmentStatus.blackListed;
+		}
+		
+		return res;
 	}
 
 	private void sendCheckImeiResponse(CheckImeiRequest event, EquipmentStatus equipmentStatus) {

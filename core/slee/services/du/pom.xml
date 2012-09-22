@@ -15,7 +15,12 @@
 			<artifactId>check-imei-sbb</artifactId>
 			<groupId>${pom.groupId}</groupId>
 			<version>${pom.version}</version>
-		</dependency>	
+		</dependency>
+		<dependency>
+			<artifactId>library</artifactId>
+			<groupId>${pom.groupId}</groupId>
+			<version>${pom.version}</version>
+		</dependency>
 	</dependencies>
 		
 	<build>

@@ -16,7 +16,14 @@
 			<includes>
 				<!-- EIR libraries -->
 				<include>org.mobicents.eir:bootstrap</include>
-
+				
+				<!-- Cassandra client -->
+				<include>me.prettyprint:hector-core</include>
+				<include>org.apache.cassandra:cassandra-thrift</include>
+				<include>org.apache.thrift:libthrift</include>
+				<include>com.google.guava:guava</include>
+				<include>commons-lang:commons-lang</include>
+				
 				<!-- cloudhopper library -->
 				<!-- <include>cloudhopper:ch-smpp</include>
 				<include>cloudhopper:ch-commons-charset</include>

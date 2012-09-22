@@ -42,6 +42,8 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendA
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest;
@@ -213,6 +215,18 @@ public class MAPListener implements MAPDialogListener, MAPServiceMobilityListene
 	@Override
 	public void onDialogUserAbort(MAPDialog arg0, MAPUserAbortChoice arg1,
 			MAPExtensionContainer arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCancelLocationRequest(CancelLocationRequest arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCancelLocationResponse(CancelLocationResponse arg0) {
 		// TODO Auto-generated method stub
 		
 	}

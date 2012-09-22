@@ -10,6 +10,12 @@
 		<sbb-version>1.0</sbb-version>
 		
 		<sbb-alias>CheckImeiSbb</sbb-alias>
+		
+		<library-ref>
+			<library-name>library</library-name>
+			<library-vendor>org.mobicents.eir</library-vendor>
+			<library-version>1.0.0</library-version>
+		</library-ref>
 
 		<sbb-classes>
 			<sbb-abstract-class>
