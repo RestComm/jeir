@@ -25,6 +25,7 @@ package org.mobicents.eir.slee.services.checkimei;
 import javax.slee.ActivityContextInterface;
 
 import org.mobicents.eir.slee.persistence.dao.BlackListDAO;
+import org.mobicents.eir.slee.persistence.dao.DAOException;
 import org.mobicents.eir.slee.persistence.dao.DAOFactory;
 import org.mobicents.eir.slee.persistence.model.BlackList;
 import org.mobicents.protocols.ss7.map.api.MAPException;
@@ -56,7 +57,12 @@ public abstract class CheckImeiSbb extends CheckImeiCommonSbb {
 		EquipmentStatus res = EquipmentStatus.whiteListed;
 		
 		BlackListDAO blDAO = DAOFactory.getDAOFactory().getBlackListDAO();
-		BlackList bl = blDAO.getByImei(imei);
+		BlackList bl = null;
+		try {
+			bl = blDAO.getByImei(imei);
+		} catch (DAOException e) {
+			tracer.severe("Error getting answer from persistence system. Answering whiteListed to imei[" + imei + "]", e);
+		}
 		
 		if (bl != null) {
 			res = EquipmentStatus.blackListed;
