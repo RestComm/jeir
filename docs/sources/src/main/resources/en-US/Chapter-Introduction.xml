@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "EIR_Server_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<chapter id="introduction">
+	<title>Introduction</title>
+	<section id="jeir_overview">
+    	<title>&THIS.PLATFORM; jEIR Overview</title>
+		<para>
+&THIS.PLATFORM; jEIR (Java EIR) is the only Open Source Java implementation of an Equipment Identity Register (EIR).
+The EIR is a database that contains a record of the all the mobile stations (MS) that are allowed in a network as well as an database of all equipment that is banned, e.g. because it is lost or stolen. 
+The identity of the mobile station is given by the International Mobile Equipment Identity (IMEI). Each time a call is made, the MSC requests the IMEI of the mobile station, which is then send to the EIR for authorization.
+jEIR is built on top of Mobicents SS7.
+		</para>
+		<para>
+			Since Mobicents jEIR is Java based, it is cross-platform and can be installed and used on any Operating System that supports Java. The Open Source Software gives you the flexibility to understand the readily available source code and customise the product for your Enterprise needs. 
+		</para>
+		<para>
+			jEIR is lead by TeleStax, Inc. and developed collaboratively by a community of individual and enterprise contributors. 
+		</para>
+
+		<important>
+       		<para>Spaces were introduced in some tables and code listings to ensure proper page render.</para>
+		</important>
+    </section>
+    
+    <section id="introduction_to_jeir">
+		<title>Introduction to EIR</title>
+		
+		<section id="eir_overview">
+			<title>EIR Overview</title>
+		  	<para>
+		  		EIR (Equipment Identity Register) is a network element connected to Mobile SoftSwitch Center (MSC) that knows if some IMEI is allowed to be registered or not.
+		  	</para>
+		</section>
+		
+		<section id="eir_server_overview">
+			<title>EIR Server Overview</title>
+			<para>
+				jEIR is built on top of Mobicents SS7.
+			</para>
+		</section>
+	</section>
+	
+</chapter>

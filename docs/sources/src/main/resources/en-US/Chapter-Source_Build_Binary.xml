@@ -1,0 +1,69 @@
+<?xml version='1.0'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "EIR_Server_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<chapter id="setup">
+	<title>Installation and Running</title>
+	<section id="installing_and_using">
+		<title>Installing</title>
+		<para>A simple way to get started is to download and install binary. This will provide you with all the dependencies you need to get going. 
+		You can obtain binary release from &THIS.RELEASE_BINARY_URL;
+		</para>
+
+		<section id="dependencies">
+			<title>Binary</title>
+			<para>The &THIS.PLATFORM; &THIS.APPLICATION; binary is broken down into a few modules.</para>
+			
+			<para>Binary release has following layout:</para>
+            <mediaobject id="binary_layout">
+                    <imageobject>
+                            <imagedata width="300px" align="center" fileref="images/binnar-structure.png" format="PNG" />
+                    </imageobject>
+                    <caption>
+                            <para>&THIS.PLATFORM; &THIS.APPLICATION; binary layout.
+                            </para>
+                    </caption>
+            </mediaobject>                                  
+            <note>
+                    <title>Note</title>
+                    <para>
+                            X.Y.Z in above layout is the respective release version of binary.
+                    </para>
+            </note>			
+			
+			<para>The following is a description of the important services and libraries that make up &THIS.PLATFORM; &THIS.APPLICATION;</para>
+			<itemizedlist>
+				<listitem>
+					<para><literal>sbb</literal> : SBB to be deployed...</para>
+				</listitem>
+				<listitem>
+					<para><literal>mobicents-eir-server</literal> : &THIS.PLATFORM; &THIS.APPLICATION; jSS7 packages. 
+					</para>
+                </listitem>
+			</itemizedlist>
+		</section>
+	</section>
+	
+	<section id="installing_binary">
+		<title>Installing &THIS.PLATFORM; &THIS.APPLICATION; Binary</title>
+		<para>Copy the directory mobicents-eir-server and the file eir-service-du-X.Y.Z.jar to JBOSS_HOME/server/default/deploy</para>
+	</section>
+	
+	<section id="installing_persistence_system">
+		<title>Installing Apache Cassandra database</title>
+		<para>Download the binary package <ulink url="http://cassandra.apache.org/download/" />. Unzip it and run ./cassandra -f</para>
+		
+		<section id="create_keyspace_cassandra">
+			<title>Creating the keyspace at Apache Cassanra</title>
+			<para>use $./cqlsh --cql3 to access the Cassandra CLI. Then type the following commands:</para>
+			<programlisting>
+CREATE KEYSPACE eirdb WITH strategy_class = 'org.apache.cassandra.locator.SimpleStrategy' AND strategy_options:replication_factor='1';
+use eirdb;
+CREATE TABLE blacklist(imei varchar, imsi varchar, PRIMARY KEY (imei));
+			</programlisting>
+		</section>
+	</section>
+	
+</chapter>

@@ -50,11 +50,13 @@ public class CassandraBlackListDAO extends CassandraDAOFactory implements BlackL
 	public BlackList getByImei(String imei) throws DAOException {
 		BlackList bl = null;
 		ColumnFamilyResult<String, String> res = null;
+		
 		try {
 			res = template.queryColumns(imei);
 		} catch (HectorException e) {
 			throw new DAOException("Error accessing persistence system. Please check if it is up and running", e);
 		}
+		
 		if (res.hasResults()) {
 			String imsi = res.getString("imsi");
 			bl = new BlackList(imei, imsi);

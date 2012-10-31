@@ -54,6 +54,7 @@
 	</properties>
 
 	<modules>
+		<module>docs</module>
 		<module>core</module>
 		<module>test</module>
 	</modules>
