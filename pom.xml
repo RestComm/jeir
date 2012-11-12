@@ -59,22 +59,12 @@
 		<module>test</module>
 	</modules>
 
-	<dependencies>
-
-	</dependencies>
 	<!-- RELEASE STUFF -->
-
 	<profiles>
-		<profile>
-			<id>maven-release</id>
-			<modules>
-				<module>docs</module>
-			</modules>
-		</profile>
 		<profile>
 			<id>release</id>
 			<modules>
-				<module>docs</module>
+				<module />
 			</modules>
 		</profile>
 	</profiles>

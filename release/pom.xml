@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.mobicents.eir</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.0.ALPHA-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>sources-checkout</artifactId>
+	<groupId>org.mobicents.applications.eir.release</groupId>
+	<version>1.0.0.ALPHA1</version>
+
+	<properties>
+		<checkout.basedir>${checkout.dir}</checkout.basedir>
+		<checkout.username>mobicents-read-only</checkout.username>
+		<checkout.password />
+
+		<eir.scmVersion>HEAD</eir.scmVersion>
+		<eir.scmVersionType>revision</eir.scmVersionType>
+
+		<eir.connectionURL>scm:git:http://code.google.com/p/jeir/</eir.connectionURL>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>checkout</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-scm-plugin</artifactId>
+						<version>1.5</version>
+						<inherited>false</inherited>
+						<executions>
+							<execution>
+								<id>eir-checkout</id>
+								<goals>
+									<goal>checkout</goal>
+								</goals>
+								<phase>validate</phase>
+								<configuration>
+									<scmVersion>${eir.scmVersion}</scmVersion>
+									<scmVersionType>${eir.scmVersionType}</scmVersionType>
+									<skipCheckoutIfExists>true</skipCheckoutIfExists>
+									<checkoutDirectory>${checkout.basedir}/eir</checkoutDirectory>
+									<connectionUrl>${eir.connectionURL}</connectionUrl>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	
+</project>

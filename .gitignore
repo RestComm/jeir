@@ -1,6 +1,14 @@
-/target
+# ignore eclipse files
 /.classpath
 /.project
 .settings
+
+# ignore Maven generated target folders
+/target
 target
-server.log
+
+# ignore release generated files
+release/zip/*
+release/checkout/*
+release/upload/*
+
