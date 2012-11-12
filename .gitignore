@@ -12,3 +12,7 @@ release/zip/*
 release/checkout/*
 release/upload/*
 
+# ignore 'randomly' strewn around logs
+server.log
+
+*JBOSS_HOME*
