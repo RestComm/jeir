@@ -35,13 +35,60 @@ jEIR is built on top of Mobicents SS7.
 		  	<para>
 		  		EIR (Equipment Identity Register) is a network element connected to Mobile SoftSwitch Center (MSC) that knows if some IMEI is allowed to be registered or not.
 		  	</para>
+		  	<para>
+		  		It is so important as a network element because operators can protect their customers and because in some countries is mandatory. 
+		  	</para>
+		  	<para>
+		  		The message exchange between MSC and EIR is a MAP message called checkIMEI. It carries the IMEI and maybe other subscriber info as MSISDN and/or IMSI (International Mobile Subscriber Identity).
+		  	</para>
+		  	<para>
+		  		If EIR find the IMEI stored as blackList, the return will be blackListed and the mobile will not be able to register at MSC. See the picture bellow.
+		  	</para>
+		  	<mediaobject id="eir-connection-example1.png">
+                    <imageobject>
+                            <imagedata width="450px" align="center" fileref="images/eir-connection-example1.png" format="PNG" />
+                    </imageobject>
+                    <caption>
+                            <para>EIR returning blackList to MSC.</para>
+                    </caption>
+            </mediaobject>
+            
+            <para>
+            	The EIR could return whiteList, blackList or grayList.
+            </para>
+            <mediaobject id="eir-return-types.png">
+                    <imageobject>
+                            <imagedata width="450px" align="center" fileref="images/eir-return-types.png" format="PNG" />
+                    </imageobject>
+                    <caption>
+                            <para>EIR return types.</para>
+                    </caption>
+            </mediaobject>
 		</section>
 		
 		<section id="eir_server_overview">
 			<title>EIR Server Overview</title>
 			<para>
-				jEIR is built on top of Mobicents SS7.
+				jEIR is built on top of Mobicents SS7 and uses Cassandra as a persistent database.
 			</para>
+			<mediaobject id="eir-architecture.png">
+                    <imageobject>
+                            <imagedata width="400px" align="center" fileref="images/eir-architecture.png" format="PNG" />
+                    </imageobject>
+                    <caption>
+                            <para>EIR architecture.</para>
+                    </caption>
+            </mediaobject>
+            <para>
+            	EIR has a high CAPs because each time a mobile is turn on and depending of MSC configuration, each hour a new checkIMEI request is performed.
+            	So it is important that the architecture support high CAPs.
+            </para>
+            <para>
+            	As the EIR just query the database about IMEI and just return if it is white, black or grayList the simultaneous calls is very short. 
+            </para>
+            <para>
+            	For logging purpose EIR should be able to handle a high volume of data. Think that each request could be stored. 
+            </para>
 		</section>
 	</section>
 	

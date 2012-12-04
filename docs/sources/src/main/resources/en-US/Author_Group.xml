@@ -3,14 +3,14 @@
 <authorgroup
 	id="authors">
 	<author>
-		<firstname>Normandes</firstname>
-		<surname>Junior</surname>
-		<email>&AUTHOR.EMAIL.NORMANDES;</email>
-	</author>
-	<author>
 		<firstname>Amit</firstname>
 		<surname>Bhayani</surname>
 		<email>&AUTHOR.EMAIL.AMIT;</email>
+	</author>
+	<author>
+		<firstname>Normandes</firstname>
+		<surname>Junior</surname>
+		<email>&AUTHOR.EMAIL.NORMANDES;</email>
 	</author>
 	<author>
 		<firstname>Sergey</firstname>

@@ -19,7 +19,7 @@
 			
 			<mediaobject id="binary_layout">
             	<imageobject>
-                	<imagedata width="300px" align="center" fileref="images/binnar-structure.png" format="PNG" />
+                	<imagedata width="241px" align="center" fileref="images/binnar-structure.png" format="PNG" />
                 </imageobject>
                 <caption>
                 	<para>&THIS.PLATFORM; &THIS.APPLICATION; binary layout.</para>
