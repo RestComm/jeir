@@ -29,6 +29,23 @@
             	<title>Note</title>
                 <para>X.Y.Z in above layout is the respective release version of binary.</para>
             </note>
+            
+            <section id="installing_binary">
+				<title>Installing &THIS.PLATFORM; &THIS.APPLICATION; Binary</title>
+				<para>Unzip the file and run the command:</para>
+<programlisting>
+[usr]$ ant
+</programlisting>
+				<note>
+					<title>JBOSS_HOME variable</title>
+					<para>Configure the JBOSS_HOME variable first pointing to the Mobicents JSLEE installed.</para>
+				</note>
+
+				<note>
+					<title>Configure SS7 link</title>
+					<para>Configure appropriately SS7 link following the Mobicents SS7 docs.</para>
+				</note>
+			</section>
 		</section>
 		
 		<section id="dependencies">
@@ -42,7 +59,7 @@
 									url="http://git-scm.com/book" /></para>
 				</listitem>		
 				<listitem>
-					<para><literal>Maven 2.0.9</literal> : Instructions for using Maven, including install, can be found at <ulink
+					<para><literal>Maven 2.2.1</literal> : Instructions for using Maven, including install, can be found at <ulink
 									url="http://maven.apache.org/" /></para>
 				</listitem>	
 				<listitem>
@@ -63,52 +80,26 @@
 					</para>
 					<programlisting>
 [usr]$ git clone &THIS.TRUNK_SOURCE_CODE_URL;
-[usr]$ cd jss7
+[usr]$ cd jeir
 [usr]$ git checkout release-&THIS.VERSION;
 					</programlisting>
 					<para>Browse the code online at <ulink url="&THIS.RELEASE_SOURCE_CODE_URL;" /> </para>
 				</step>
 				<step>
 					<title>Building the source code</title>
+					
 					<para>Now that we have the source the next step is to build and install the source. 
-					&THIS.PLATFORM; &THIS.APPLICATION; uses Maven 2 to build the system. There are three profiles. Default one builds only java source. The other two profiles 
-					available "dahdilinux" and "dialogiclinux" additionaly compile native modules.</para>
-					<note>
-						<para>
-							Native modules are supported only for linux OS for now.
-						</para>
-					</note>					
-					<para>Use "dahdilinux" profile if linux server on which this code is built already has dahdi module installed. 
-					Make sure you pass "include.zap" system property pointing to correct directory where dahdi is installed</para>
+					&THIS.PLATFORM; &THIS.APPLICATION; uses Maven 2 to build the system.
+					</para>
+										
 					<programlisting>
-[usr]$ cd jss7
-[usr]$ mvn install -Pdahdilinux -Dinclude.zap=/usr/include/dahdi
+[usr]$ cd jeir
+[usr]$ mvn clean install
 				    </programlisting>
 				    
-					<para>Use "dialogiclinux" profile if linux server on which this code is built already has dialogic module installed. 
-					Make sure you pass "include.dialogic" and "include.dialogic.gctlib" system property pointing to correct directory where 
-					dialogic libraries are installed. include.dialogic.gctlib points to directory where <literal>gctload</literal> is present (generally
-					/opt/dpklnx for linux OS)</para>
-					<programlisting>
-[usr]$ cd jss7
-[usr]$ mvn install -Pdialogclinux -Dinclude.dialogic=/opt/dpklnx/INC -Dinclude.dialogic.gctlib=/opt/dpklnx
-				    </programlisting>	
-				    
-				   	<para>To build &THIS.PLATFORM; &THIS.APPLICATION; without building any native libraries use</para>
-					<programlisting>
-[usr]$ cd jss7
-[usr]$ mvn install 
-				    </programlisting>
-					<note>
-						<para>
-							If you are using &THIS.PLATFORM; &THIS.APPLICATION; without any native dependencies, &THIS.PLATFORM; &THIS.APPLICATION; can run on any OS.
-						</para>
-					</note>
-									    
-							    
 					<para>Use Ant to build the binary .</para>
 					<programlisting>
-[usr]$ cd jss7/release
+[usr]$ cd jeir/release
 [usr]$ ant
 				    </programlisting>
 
@@ -119,22 +110,33 @@
 		</section>
 	</section>
 	
-	<section id="installing_binary">
-		<title>Installing &THIS.PLATFORM; &THIS.APPLICATION; Binary</title>
-		<para>Copy the directory mobicents-eir-server and the file eir-service-du-X.Y.Z.jar to JBOSS_HOME/server/default/deploy</para>
-	</section>
-	
 	<section id="installing_persistence_system">
 		<title>Installing Apache Cassandra database</title>
-		<para>Download the binary package <ulink url="http://cassandra.apache.org/download/" />. Unzip it and run ./cassandra -f</para>
+		<para>Download the binary package <ulink url="http://cassandra.apache.org/download/" />. Unzip it and run:</para>
+		<programlisting>
+./cassandra -f
+		</programlisting>
 		
 		<section id="create_keyspace_cassandra">
 			<title>Creating the keyspace at Apache Cassanra</title>
-			<para>use $./cqlsh --cql3 to access the Cassandra CLI. Then type the following commands:</para>
+			<para>Use:</para>
+			<programlisting> 
+$./cqlsh --cql3 
+			</programlisting>
+			<para>To access the Cassandra CLI. Then type the following commands:</para>
+			
 			<programlisting>
 CREATE KEYSPACE eirdb WITH strategy_class = 'org.apache.cassandra.locator.SimpleStrategy' AND strategy_options:replication_factor='1';
 use eirdb;
 CREATE TABLE blacklist(imei varchar, imsi varchar, PRIMARY KEY (imei));
+			</programlisting>
+		</section>
+		
+		<section id="inserting_imeis_cassandra">
+			<title>Inserting IMEI in blackList</title>
+			<para>To be able insert new IMEI to be blocked in EIR, you should insert in Cassandra database with the command bellow.</para>
+			<programlisting>
+INSERT INTO blacklist (imei, imsi) values ('111111111111111', '222222222222222');
 			</programlisting>
 		</section>
 	</section>
