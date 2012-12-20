@@ -5,53 +5,41 @@
 ]>
 
 <chapter id="setup">
-	<title>Installation and Running</title>
+	<title>Installation</title>
 	<section id="installing_and_using">
-		<title>Installing</title>
-		<para>A simple way to get started is to download and install binary. This will provide you with all the dependencies you need to get going. 
-		You can obtain binary release from &THIS.RELEASE_BINARY_URL;
-		</para>
-		
+		<title>Installing &THIS.PLATFORM; jEIR</title>
+		<para>A simple way to get started is to download and install the binary. This will provide you with all the dependencies you need to get going. Alternatively you can build from the source code and stay on top with the latest features. This chapter discusses both these methods of installation.
+		</para>		
 		<section id="binary">
-			<title>Binary</title>
-			<para>The Mobicents jEIR Server is broken down into two modules.</para>
-			<para>Binary release has the following layout:</para>
+			<title>Binary Installation</title>
+			<para>You can obtain the binary release from &THIS.RELEASE_BINARY_URL;. When you download and unzip the file you will find the top directory named as <filename>&THIS.PLATFORM;-EIR-version</filename>. The binary requires that you have the <literal>JBOSS_HOME</literal> environment variable set properly to point to the JSLEE installed. You must also ensure that the SS7 links are installed and configured appropriately following the instructions in the SS7 documentation included within.</para>
+
+			<para>The Mobicents jEIR Server is broken down into two modules and the binary layout is as depicted in the figure below:</para>
 			
 			<mediaobject id="binary_layout">
             	<imageobject>
                 	<imagedata width="241px" align="center" fileref="images/binnar-structure.png" format="PNG" />
                 </imageobject>
                 <caption>
-                	<para>&THIS.PLATFORM; &THIS.APPLICATION; binary layout.</para>
+                	<para>&THIS.PLATFORM; &THIS.APPLICATION; Binary Layout</para>
                 </caption>
         	</mediaobject>
         	<note>
             	<title>Note</title>
                 <para>X.Y.Z in above layout is the respective release version of binary.</para>
             </note>
-            
-            <section id="installing_binary">
-				<title>Installing &THIS.PLATFORM; &THIS.APPLICATION; Binary</title>
-				<para>Unzip the file and run the command:</para>
-<programlisting>
+<!--<programlisting>
 [usr]$ ant
 </programlisting>
-				<note>
-					<title>JBOSS_HOME variable</title>
-					<para>Configure the JBOSS_HOME variable first pointing to the Mobicents JSLEE installed.</para>
-				</note>
-
-				<note>
-					<title>Configure SS7 link</title>
-					<para>Configure appropriately SS7 link following the Mobicents SS7 docs.</para>
-				</note>
-			</section>
-		</section>
+				
+-->
+	 </section>
 		
-		<section id="dependencies">
+		<section id="setup_source">
 			<title>Setup from source</title>
-			<para>The &THIS.PLATFORM; &THIS.APPLICATION; is an open source project, instructions for building from source are part of the manual! Building from source means you can stay on top with the latest futures.</para>
-			<para>&THIS.PLATFORM; &THIS.APPLICATION; works with JDK1.7 and above. You will also need to have the following tools installed. Minimum requirement version numbers provided.</para>
+			<para>The &THIS.PLATFORM; &THIS.APPLICATION; is an open source project and offers you the flexibility to build from source. Building from source means you can stay on top with the latest features.</para>
+
+			<para>&THIS.PLATFORM; &THIS.APPLICATION; works with JDK1.7 and above. You will also need to have the following tools installed.</para>
 			
 			<itemizedlist>
 				<listitem>
@@ -75,15 +63,15 @@
 				<step>
 					<title>Downloading the source code</title>
 					
-					<para>Use GIT to clone repository, the base URL is &THIS.TRUNK_SOURCE_CODE_URL;,
-						then to checkout specific release version(tag) use <command>git checkout tag_name</command>, lets consider release-&THIS.VERSION;.
+					<para>Use GIT to clone the repository, the base URL is &THIS.TRUNK_SOURCE_CODE_URL;,
+						then to checkout a specific release version (tag) use the command <command>git checkout tag_name</command>. Say for example you would like to checkout the version release-&THIS.VERSION; then the command would be as follows:
 					</para>
 					<programlisting>
 [usr]$ git clone &THIS.TRUNK_SOURCE_CODE_URL;
 [usr]$ cd jeir
 [usr]$ git checkout release-&THIS.VERSION;
 					</programlisting>
-					<para>Browse the code online at <ulink url="&THIS.RELEASE_SOURCE_CODE_URL;" /> </para>
+				<!--	<para>Browse the code online at <ulink url="&THIS.RELEASE_SOURCE_CODE_URL;" /> </para>-->
 				</step>
 				<step>
 					<title>Building the source code</title>
@@ -111,19 +99,19 @@
 	</section>
 	
 	<section id="installing_persistence_system">
-		<title>Installing Apache Cassandra database</title>
-		<para>Download the binary package <ulink url="http://cassandra.apache.org/download/" />. Unzip it and run:</para>
+		<title>Installing Apache Cassandra Database</title>
+		<para>Download the binary package from <ulink url="http://cassandra.apache.org/download/" />. Unzip the file and run the below command:</para>
 		<programlisting>
 ./cassandra -f
 		</programlisting>
 		
 		<section id="create_keyspace_cassandra">
 			<title>Creating the keyspace at Apache Cassanra</title>
-			<para>Use:</para>
+			<para>Use the below command to access the Cassandra CLI.</para>
 			<programlisting> 
 $./cqlsh --cql3 
 			</programlisting>
-			<para>To access the Cassandra CLI. Then type the following commands:</para>
+			<para>Then type the following commands:</para>
 			
 			<programlisting>
 CREATE KEYSPACE eirdb WITH strategy_class = 'org.apache.cassandra.locator.SimpleStrategy' AND strategy_options:replication_factor='1';
@@ -134,7 +122,7 @@ CREATE TABLE blacklist(imei varchar, imsi varchar, PRIMARY KEY (imei));
 		
 		<section id="inserting_imeis_cassandra">
 			<title>Inserting IMEI in blackList</title>
-			<para>To be able insert new IMEI to be blocked in EIR, you should insert in Cassandra database with the command bellow.</para>
+			<para>To be able insert a new IMEI to be blocked in EIR, you should insert the value in the Cassandra database with the command below.</para>
 			<programlisting>
 INSERT INTO blacklist (imei, imsi) values ('111111111111111', '222222222222222');
 			</programlisting>

@@ -10,86 +10,25 @@
 	<section id="jeir_overview">
     	<title>&THIS.PLATFORM; jEIR Overview</title>
 		<para>
-&THIS.PLATFORM; jEIR (Java EIR) is the only Open Source Java implementation of an Equipment Identity Register (EIR).
-The EIR is a database that contains a record of the all the mobile stations (MS) that are allowed in a network as well as an database of all equipment that is banned, e.g. because it is lost or stolen. 
-The identity of the mobile station is given by the International Mobile Equipment Identity (IMEI). Each time a call is made, the MSC requests the IMEI of the mobile station, which is then send to the EIR for authorization.
-jEIR is built on top of Mobicents SS7.
+&THIS.PLATFORM; jEIR (Java EIR) is the only Open Source Java implementation of EIR (Equipment Identity Register). It is built on top of &THIS.PLATFORM; jSS7, a software based implementation of the SS7 protocol. &THIS.PLATFORM; jSS7 provides implementation for Level 2 and above in the SS7 protocol Stack. Please refer to the &THIS.PLATFORM; jSS7 Stack User Guide for more details on the Stack.
 		</para>
 		<para>
-			Since Mobicents jEIR is Java based, it is cross-platform and can be installed and used on any Operating System that supports Java. The Open Source Software gives you the flexibility to understand the readily available source code and customise the product for your Enterprise needs. 
+&THIS.PLATFORM; jEIR supports TDM hardware offered by major vendors in the market, namely Intel family boards (Dialogic) and Zaptel/Dahdi
+(Digium, Sangoma). Since &THIS.PLATFORM; jEIR is Java based, it is cross-platform and can be installed and used on any Operating System that supports Java. The Open Source Software gives you the flexibility to understand the readily available source code and customise the product for your Enterprise needs. 
 		</para>
 		<para>
 			jEIR is lead by TeleStax, Inc. and developed collaboratively by a community of individual and enterprise contributors. 
 		</para>
-
-		<important>
-       		<para>Spaces were introduced in some tables and code listings to ensure proper page render.</para>
-		</important>
     </section>
     
-    <section id="introduction_to_jeir">
-		<title>Introduction to EIR</title>
-		
-		<section id="eir_overview">
+   <section id="eir_overview">
 			<title>EIR Overview</title>
 		  	<para>
-		  		EIR (Equipment Identity Register) is a network element connected to Mobile SoftSwitch Center (MSC) that knows if some IMEI is allowed to be registered or not.
+		  		An EIR (Equipment Identity Register) is an important network element connected to the MSC (Mobile SoftSwitch Center). It allows mobile operators to protect their customers and controll access to mobile networks by identifying stolen and fraudulent devices. In some countries this may be mandated by the law as well.
 		  	</para>
-		  	<para>
-		  		It is so important as a network element because operators can protect their customers and because in some countries is mandatory. 
-		  	</para>
-		  	<para>
-		  		The message exchange between MSC and EIR is a MAP message called checkIMEI. It carries the IMEI and maybe other subscriber info as MSISDN and/or IMSI (International Mobile Subscriber Identity).
-		  	</para>
-		  	<para>
-		  		If EIR find the IMEI stored as blackList, the return will be blackListed and the mobile will not be able to register at MSC. See the picture bellow.
-		  	</para>
-		  	<mediaobject id="eir-connection-example1.png">
-                    <imageobject>
-                            <imagedata width="450px" align="center" fileref="images/eir-connection-example1.png" format="PNG" />
-                    </imageobject>
-                    <caption>
-                            <para>EIR returning blackList to MSC.</para>
-                    </caption>
-            </mediaobject>
-            
-            <para>
-            	The EIR could return whiteList, blackList or grayList.
-            </para>
-            <mediaobject id="eir-return-types.png">
-                    <imageobject>
-                            <imagedata width="450px" align="center" fileref="images/eir-return-types.png" format="PNG" />
-                    </imageobject>
-                    <caption>
-                            <para>EIR return types.</para>
-                    </caption>
-            </mediaobject>
-		</section>
-		
-		<section id="eir_server_overview">
-			<title>EIR Server Overview</title>
 			<para>
-				jEIR is built on top of Mobicents SS7 and uses Cassandra as a persistent database.
+				The EIR is a database that contains a record of all the mobile stations (MS) that are allowed in a network as well as a database of all the blacklisted handsets (lost or stolen cellphones). A mobile station (MS) is identified by a number, usually unique and referred to as IMEI (International Mobile Equipment Identity). Each time a call is made, the MSC requests the IMEI of the mobile station, which is then send to the EIR for authorization. If the EIR finds the IMEI in the list of banned devices then mobile will not be allowed to register at the MSC and will not be allowed in the network.
 			</para>
-			<mediaobject id="eir-architecture.png">
-                    <imageobject>
-                            <imagedata width="400px" align="center" fileref="images/eir-architecture.png" format="PNG" />
-                    </imageobject>
-                    <caption>
-                            <para>EIR architecture.</para>
-                    </caption>
-            </mediaobject>
-            <para>
-            	EIR has a high CAPs because each time a mobile is turn on and depending of MSC configuration, each hour a new checkIMEI request is performed.
-            	So it is important that the architecture support high CAPs.
-            </para>
-            <para>
-            	As the EIR just query the database about IMEI and just return if it is white, black or grayList the simultaneous calls is very short. 
-            </para>
-            <para>
-            	For logging purpose EIR should be able to handle a high volume of data. Think that each request could be stored. 
-            </para>
-		</section>
-	</section>
+  </section>
 	
 </chapter>
