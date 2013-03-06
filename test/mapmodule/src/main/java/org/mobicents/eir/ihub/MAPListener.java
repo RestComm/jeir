@@ -29,7 +29,6 @@ import org.mobicents.protocols.ss7.map.api.MAPMessage;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPAbortProviderReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPAbortSource;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPNoticeProblemDiagnostic;
-import org.mobicents.protocols.ss7.map.api.dialog.MAPProviderError;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPRefuseReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPUserAbortChoice;
 import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessage;
@@ -48,6 +47,8 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.U
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataResponse;
 import org.mobicents.protocols.ss7.tcap.asn.ApplicationContextName;
 import org.mobicents.protocols.ss7.tcap.asn.comp.Problem;
 
@@ -83,19 +84,6 @@ public class MAPListener implements MAPDialogListener, MAPServiceMobilityListene
 	}
 
 	@Override
-	public void onProviderErrorComponent(MAPDialog arg0, Long arg1,
-			MAPProviderError arg2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onRejectComponent(MAPDialog arg0, Long arg1, Problem arg2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void onAnyTimeInterrogationRequest(AnyTimeInterrogationRequest arg0) {
 		// TODO Auto-generated method stub
 		
@@ -117,7 +105,7 @@ public class MAPListener implements MAPDialogListener, MAPServiceMobilityListene
 	public void onCheckImeiResponse(CheckImeiResponse checkImeiResponse) {
 		logger.info("MAPListener.onCheckImeiResponse");
 		
-		logger.info("DialogId: " + checkImeiResponse.getMAPDialog().getDialogId() + ". EquipmentStatus: " + checkImeiResponse.getEquipmentStatus());
+		logger.info("DialogId: " + checkImeiResponse.getMAPDialog().getLocalDialogId() + ". EquipmentStatus: " + checkImeiResponse.getEquipmentStatus());
 	}
 
 	@Override
@@ -179,14 +167,6 @@ public class MAPListener implements MAPDialogListener, MAPServiceMobilityListene
 	}
 
 	@Override
-	public void onDialogReject(MAPDialog arg0, MAPRefuseReason arg1,
-			MAPProviderError arg2, ApplicationContextName arg3,
-			MAPExtensionContainer arg4) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void onDialogRelease(MAPDialog arg0) {
 		// TODO Auto-generated method stub
 		
@@ -227,6 +207,31 @@ public class MAPListener implements MAPDialogListener, MAPServiceMobilityListene
 
 	@Override
 	public void onCancelLocationResponse(CancelLocationResponse arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onRejectComponent(MAPDialog arg0, Long arg1, Problem arg2, boolean arg3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onInsertSubscriberDataRequest(InsertSubscriberDataRequest arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onInsertSubscriberDataResponse(InsertSubscriberDataResponse arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onDialogReject(MAPDialog arg0, MAPRefuseReason arg1, ApplicationContextName arg2,
+			MAPExtensionContainer arg3) {
 		// TODO Auto-generated method stub
 		
 	}

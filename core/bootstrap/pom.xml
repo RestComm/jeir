@@ -77,11 +77,11 @@
 		</dependency>
 
 		<!-- Clock -->
-		<dependency>
+		<!--dependency>
 			<groupId>org.mobicents.protocols.ss7.clock</groupId>
 			<artifactId>clock</artifactId>
 			<version>${ss7.version}</version>
-		</dependency>
+		</dependency -->
 
 		<!-- Scheduler -->
 		<dependency>
@@ -91,11 +91,11 @@
 		</dependency>
 
 		<!-- Management Shell -->
-		<dependency>
+		<!--dependency>
 			<artifactId>shell</artifactId>
 			<groupId>org.mobicents.protocols.ss7.management</groupId>
 			<version>${ss7.version}</version>
-		</dependency>
+		</dependency-->
 
 		<!-- Management linkset -->
 		<dependency>

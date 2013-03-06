@@ -72,11 +72,11 @@
 			<version>${ss7.version}</version>
 		</dependency>
 		<!-- Management Shell -->
-		<dependency>
+		<!--dependency>
 			<artifactId>shell</artifactId>
 			<groupId>org.mobicents.protocols.ss7.management</groupId>
 			<version>${ss7.version}</version>
-		</dependency>
+		</dependency-->
 
 		<!-- Management linkset -->
 		<dependency>

@@ -83,7 +83,7 @@ public class MSCSccpListener implements SccpListener {
 		MAPDialogMobility clientDialogMobility = this.mapProvider.getMAPServiceMobility()
 				.createNewDialog(getApplicationContext(), getMSCSccpAddress(), null, getEIRSccpAddress(), null);
 		
-		logger.info("DialogId: " + clientDialogMobility.getDialogId() + ". Sending IMEI=[" + testIMEI + "]. IMSI=[" + testIMSI + "]");
+		logger.info("DialogId: " + clientDialogMobility.getLocalDialogId() + ". Sending IMEI=[" + testIMEI + "]. IMSI=[" + testIMSI + "]");
 		MAPParameterFactory mapParameterFactory = this.mapProvider.getMAPParameterFactory();
 		IMEI imei = mapParameterFactory.createIMEI(testIMEI);
 		IMSI imsi = mapParameterFactory.createIMSI(testIMSI);
