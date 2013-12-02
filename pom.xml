@@ -40,11 +40,11 @@
 		
 		<jslee.ext.version>1.0.0.BETA2</jslee.ext.version>
 
-		<ss7.version>2.0.0.BETA4</ss7.version>
+		<ss7.version>2.1.0.FINAL</ss7.version>
 		<!-- mobicents but not strictly ss7 -->
-		<asn.version>2.0.1.FINAL</asn.version>
+		<asn.version>2.0.2.FINAL</asn.version>
 		<stream.version>1.0.0.CR1</stream.version>
-		<sctp.version>1.0.0.FINAL</sctp.version>
+		<sctp.version>1.4.0.FINAL</sctp.version>
 		<commons.version>1.0.0.CR1</commons.version>
 		
 		<!-- client for Cassandra -->
