@@ -36,7 +36,7 @@
 		<mvel.dep.version>2.0.10</mvel.dep.version>
 
 		<mobicents.core.ext.version>1.0.0.BETA2</mobicents.core.ext.version>
-		<mobicents.resources.map.version>2.0.0-SNAPSHOT</mobicents.resources.map.version>
+		<mobicents.resources.map.version>2.8.0-SNAPSHOT</mobicents.resources.map.version>
 		
 		<jslee.ext.version>1.0.0.BETA2</jslee.ext.version>
 
@@ -54,7 +54,7 @@
 	</properties>
 
 	<modules>
-		<module>docs</module>
+		<!--module>docs</module-->
 		<module>core</module>
 		<module>test</module>
 	</modules>
