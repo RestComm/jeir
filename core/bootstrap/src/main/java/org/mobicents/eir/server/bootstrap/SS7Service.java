@@ -35,7 +35,7 @@ import org.jboss.system.ServiceMBeanSupport;
  */
 public class SS7Service extends ServiceMBeanSupport implements SS7ServiceMBean {
 
-    private Logger logger = Logger.getLogger(SS7Service.class);
+    private static final Logger logger = Logger.getLogger(SS7Service.class);
 
 	private Object stack;
 
