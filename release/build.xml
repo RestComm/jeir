@@ -2,9 +2,9 @@
 <project name="eir.release.sf" default="package" basedir=".">
 
 	<!-- Components Versions -->
-	<property name="release.version" value="1.0.0-ALPHA" />
+	<property name="release.version" value="1.0.0" />
 
-	<property name="eir.version" value="1.0.0.ALPHA-SNAPSHOT" />
+	<property name="eir.version" value="1.0.0-SNAPSHOT" />
 
 	<property name="protocols.build.list" value="parent,m3ua,mtp,isup,sccp,tcap,map" />
 	<property name="protocols.copy.list" value="m3ua,mtp,isup,sccp,tcap,map" />
@@ -18,7 +18,7 @@
 	<property name="test.skip" value="true" />
 	
 	<!-- Definition -->
-	<property name="release.name" value="ALPHA" />
+	<property name="release.name" value="release-1.0.0" />
 
 	<property environment="sys" />
 	<condition property="mvn.executable" value="${sys.M2_HOME}\bin\mvn.bat" else="mvn">

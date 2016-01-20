@@ -37,8 +37,14 @@ import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.map.api.service.mobility.MAPServiceMobilityListener;
+import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.AuthenticationFailureReportRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.AuthenticationFailureReportResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.faultRecovery.ForwardCheckSSIndicationRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.faultRecovery.ResetRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.faultRecovery.RestoreDataRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.faultRecovery.RestoreDataResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationRequest;
@@ -51,8 +57,14 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.U
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateGprsLocationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.oam.ActivateTraceModeRequest_Mobility;
+import org.mobicents.protocols.ss7.map.api.service.mobility.oam.ActivateTraceModeResponse_Mobility;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ProvideSubscriberInfoRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ProvideSubscriberInfoResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.DeleteSubscriberDataRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.DeleteSubscriberDataResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataResponse;
 import org.mobicents.protocols.ss7.tcap.asn.ApplicationContextName;
@@ -72,210 +84,239 @@ public class MAPListener implements MAPDialogListener, MAPServiceMobilityListene
 	}
 
 	@Override
-	public void onErrorComponent(MAPDialog arg0, Long arg1, MAPErrorMessage arg2) {
+	public void onErrorComponent(MAPDialog mapDialog, Long invokeId, MAPErrorMessage mapErrorMessage) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onInvokeTimeout(MAPDialog arg0, Long arg1) {
+	public void onInvokeTimeout(MAPDialog mapDialog, Long invokeId) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onMAPMessage(MAPMessage arg0) {
+	public void onMAPMessage(MAPMessage mapMessage) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onAnyTimeInterrogationRequest(AnyTimeInterrogationRequest arg0) {
+	public void onAnyTimeInterrogationRequest(AnyTimeInterrogationRequest anyTimeInterrogationRequest) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onAnyTimeInterrogationResponse(AnyTimeInterrogationResponse arg0) {
+	public void onAnyTimeInterrogationResponse(AnyTimeInterrogationResponse anyTimeInterrogationResponse) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void onCheckImeiRequest(CheckImeiRequest arg0) {
+	public void onCheckImeiRequest(CheckImeiRequest checkImeiRequest) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onCheckImeiResponse(CheckImeiResponse checkImeiResponse) {
 		logger.info("MAPListener.onCheckImeiResponse");
-		
+
 		logger.info("DialogId: " + checkImeiResponse.getMAPDialog().getLocalDialogId() + ". EquipmentStatus: " + checkImeiResponse.getEquipmentStatus());
 	}
 
 	@Override
-	public void onSendAuthenticationInfoRequest(
-			SendAuthenticationInfoRequest arg0) {
+	public void onSendAuthenticationInfoRequest(SendAuthenticationInfoRequest sendAuthenticationInfoRequest) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onSendAuthenticationInfoResponse(
-			SendAuthenticationInfoResponse arg0) {
+	public void onSendAuthenticationInfoResponse(SendAuthenticationInfoResponse sendAuthenticationInfoResponse) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onUpdateLocationRequest(UpdateLocationRequest arg0) {
+	public void onUpdateLocationRequest(UpdateLocationRequest updateLocationRequest) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onUpdateLocationResponse(UpdateLocationResponse arg0) {
+	public void onUpdateLocationResponse(UpdateLocationResponse updateLocationResponse) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void onDialogAccept(MAPDialog arg0, MAPExtensionContainer arg1) {
+	public void onDialogAccept(MAPDialog mapDialog, MAPExtensionContainer extensionContainer) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onDialogClose(MAPDialog arg0) {
+	public void onDialogClose(MAPDialog mapDialog) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void onDialogDelimiter(MAPDialog arg0) {
+	public void onDialogDelimiter(MAPDialog mapDialog) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onDialogNotice(MAPDialog arg0, MAPNoticeProblemDiagnostic arg1) {
+	public void onDialogNotice(MAPDialog mapDialog, MAPNoticeProblemDiagnostic noticeProblemDiagnostic) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void onDialogProviderAbort(MAPDialog arg0,
-			MAPAbortProviderReason arg1, MAPAbortSource arg2,
-			MAPExtensionContainer arg3) {
+	public void onDialogProviderAbort(MAPDialog mapDialog, MAPAbortProviderReason abortProviderReason,
+	        MAPAbortSource abortSource, MAPExtensionContainer extensionContainer) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onDialogRelease(MAPDialog arg0) {
+	public void onDialogRelease(MAPDialog mapDialog) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void onDialogRequest(MAPDialog arg0, AddressString arg1,
-			AddressString arg2, MAPExtensionContainer arg3) {
+	public void onDialogRequest(MAPDialog mapDialog, AddressString destReference, AddressString origReference,
+            MAPExtensionContainer extensionContainer) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void onDialogRequestEricsson(MAPDialog arg0, AddressString arg1,
-			AddressString arg2, IMSI arg3, AddressString arg4) {
+	public void onDialogRequestEricsson(MAPDialog mapDialog, AddressString destReference, AddressString origReference,
+            IMSI eriImsi, AddressString eriVlrNo) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onDialogTimeout(MAPDialog arg0) {
+	public void onDialogTimeout(MAPDialog mapDialog) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onDialogUserAbort(MAPDialog arg0, MAPUserAbortChoice arg1,
-			MAPExtensionContainer arg2) {
+	public void onDialogUserAbort(MAPDialog mapDialog, MAPUserAbortChoice userReason, MAPExtensionContainer extensionContainer) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onCancelLocationRequest(CancelLocationRequest arg0) {
+	public void onCancelLocationRequest(CancelLocationRequest cancelLocationRequest) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onCancelLocationResponse(CancelLocationResponse arg0) {
+	public void onCancelLocationResponse(CancelLocationResponse cancelLocationResponse) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onRejectComponent(MAPDialog arg0, Long arg1, Problem arg2, boolean arg3) {
+	public void onRejectComponent(MAPDialog mapDialog, Long invokeId, Problem problem, boolean isLocalOriginated) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onInsertSubscriberDataRequest(InsertSubscriberDataRequest arg0) {
+	public void onInsertSubscriberDataRequest(InsertSubscriberDataRequest insertSubscriberDataRequest) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onInsertSubscriberDataResponse(InsertSubscriberDataResponse arg0) {
+	public void onInsertSubscriberDataResponse(InsertSubscriberDataResponse insertSubscriberDataResponse) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onDialogReject(MAPDialog arg0, MAPRefuseReason arg1, ApplicationContextName arg2,
-			MAPExtensionContainer arg3) {
+	public void onDialogReject(MAPDialog mapDialog, MAPRefuseReason refuseReason, ApplicationContextName alternativeApplicationContext, MAPExtensionContainer extensionContainer) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onPurgeMSRequest(PurgeMSRequest arg0) {
+	public void onPurgeMSRequest(PurgeMSRequest purgeMSRequest) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onPurgeMSResponse(PurgeMSResponse arg0) {
+	public void onPurgeMSResponse(PurgeMSResponse purgeMSResponse) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onSendIdentificationRequest(SendIdentificationRequest arg0) {
+	public void onSendIdentificationRequest(SendIdentificationRequest sendIdentificationRequest) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onSendIdentificationResponse(SendIdentificationResponse arg0) {
+	public void onSendIdentificationResponse(SendIdentificationResponse sendIdentificationResponse) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onUpdateGprsLocationRequest(UpdateGprsLocationRequest arg0) {
+	public void onUpdateGprsLocationRequest(UpdateGprsLocationRequest updateGprsLocationRequest) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void onUpdateGprsLocationResponse(UpdateGprsLocationResponse arg0) {
+	public void onUpdateGprsLocationResponse(UpdateGprsLocationResponse updateGprsLocationResponse) {
 		// TODO Auto-generated method stub
-		
+	}
+
+	@Override
+	public void onAuthenticationFailureReportRequest(AuthenticationFailureReportRequest authenticationFailureReportRequest) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onAuthenticationFailureReportResponse(AuthenticationFailureReportResponse authenticationFailureReportResponse) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onResetRequest(ResetRequest resetRequest) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onForwardCheckSSIndicationRequest(ForwardCheckSSIndicationRequest forwardCheckSSIndicationRequest) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onRestoreDataRequest(RestoreDataRequest restoreDataRequest) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onRestoreDataResponse(RestoreDataResponse restoreDataResponse) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onProvideSubscriberInfoRequest(ProvideSubscriberInfoRequest provideSubscriberInfoRequest) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onProvideSubscriberInfoResponse(ProvideSubscriberInfoResponse provideSubscriberInfoResponse) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onDeleteSubscriberDataRequest(DeleteSubscriberDataRequest deleteSubscriberDataRequest) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onDeleteSubscriberDataResponse(DeleteSubscriberDataResponse deleteSubscriberDataResponse) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onActivateTraceModeRequest_Mobility(ActivateTraceModeRequest_Mobility activateTraceModeRequest_Mobility) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onActivateTraceModeResponse_Mobility(ActivateTraceModeResponse_Mobility activateTraceModeResponse_Mobility) {
+		// TODO Auto-generated method stub
 	}
 
 }

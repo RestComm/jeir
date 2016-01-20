@@ -1,15 +1,15 @@
 ===========================
- Mobicents EIR Server Bundle
+ RestComm EIR Server Bundle
 ===========================
-               v1.0.0.ALPHA1
+               v1.0.0
 
- Welcome to the Mobicents jEIR Server Bundle v1.0.0.ALPHA1 release!
+ Welcome to the RestComm jEIR Server Bundle v1.0.0 release!
 
 --------------
  Introduction
 --------------
 
-This is the bundle release of Mobicents jEIR Server.
+This is the bundle release of RestComm jEIR Server.
 
 ------------------
 What's new in this release?
@@ -22,19 +22,19 @@ This release is full of new features
 Home page for each project 
 ------------------
 
-http://code.google.com/p/jeir/
+https://github.com/RestComm/jeir
 
 ------------------
 GIT Master Browse
 ------------------
 
-http://code.google.com/p/jeir/source/browse/ 
+https://github.com/RestComm/jeir/tree/master
   
 ------------------
  GIT Tag Browse
 ------------------
 
-http://code.google.com/p/jeir/source/browse/?name=release-ALPHA1
+https://github.com/RestComm/jeir/releases/tag/1.0.0
 
   
 ----------------
@@ -52,5 +52,5 @@ Please refer to documentation in /eir module for detailed explanation.
 
   * Mobicents Google Group, for posting questions (http://groups.google.com/group/mobicents-public)
 
-  * Mobicents Homepage (http://www.mobicents.org)
+  * Telestax Homepage (http://www.telestax.com/)
 

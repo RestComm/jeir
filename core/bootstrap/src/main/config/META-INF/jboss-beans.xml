@@ -8,14 +8,20 @@
 			<parameter>SCTPManagement</parameter>
 		</constructor>
 		<property name="persistDir">${jboss.server.data.dir}</property>
-		<property name="singleThread">true</property>
-		<property name="connectDelay">5000</property>
+		<!-- <property name="singleThread">true</property>
+		<property name="connectDelay">5000</property> -->
 	</bean>
 
-	<bean name="SCTPShellExecutor"
-		class="org.mobicents.protocols.ss7.m3ua.impl.oam.SCTPShellExecutor">
-		<property name="sctpManagement">
-			<inject bean="SCTPManagement" />
+	<bean name="SCTPShellExecutor" class="org.mobicents.protocols.ss7.m3ua.impl.oam.SCTPShellExecutor">
+		<property name="sctpManagements">
+			<map keyClass="java.lang.String" valueClass="org.mobicents.protocols.sctp.ManagementImpl">
+				<entry>
+					<key>SCTPManagement</key>
+					<value>
+						<inject bean="SCTPManagement" />
+					</value>
+				</entry>
+			</map>
 		</property>
 	</bean>
 
@@ -38,8 +44,11 @@
 	<bean name="Mtp3UserPart" class="org.mobicents.protocols.ss7.m3ua.impl.M3UAManagementImpl">
 		<constructor>
 			<parameter>Mtp3UserPart</parameter>
+			<parameter>Mobicents-jEIR</parameter>
 		</constructor>
 		<property name="persistDir">${jboss.server.data.dir}</property>
+		<property name="maxSequenceNumber">256</property>
+		<property name="maxAsForRoute">2</property>
 		<property name="transportManagement">
 			<inject bean="SCTPManagement" />
 		</property>
@@ -48,10 +57,16 @@
 		</property>
 	</bean>
 
-	<bean name="M3UAShellExecutor"
-		class="org.mobicents.protocols.ss7.m3ua.impl.oam.M3UAShellExecutor">
-		<property name="m3uaManagement">
-			<inject bean="Mtp3UserPart" />
+	<bean name="M3UAShellExecutor" class="org.mobicents.protocols.ss7.m3ua.impl.oam.M3UAShellExecutor">
+		<property name="m3uaManagements">
+			<map keyClass="java.lang.String" valueClass="org.mobicents.protocols.ss7.m3ua.impl.M3UAManagementImpl">
+				<entry>
+					<key>Mtp3UserPart</key>
+					<value>
+						<inject bean="Mtp3UserPart" />
+					</value>
+				</entry>
+			</map>
 		</property>
 	</bean>
 
@@ -72,8 +87,27 @@
 	<!-- ==================================================================== -->
 	<!-- Dialogic Mtp3UserPart -->
 	<!-- ==================================================================== -->
-	<!-- <bean name="Mtp3UserPart" class="org.mobicents.ss7.hardware.dialogic.DialogicMtp3UserPart"> 
-		<property name="sourceModuleId">61</property> <property name="destinationModuleId">34</property> 
+	<!-- <bean name="Mtp3UserPart" class="org.mobicents.ss7.hardware.dialogic.DialogicMtp3UserPart">
+		<constructor>
+			<parameter>Mobicents-jEIR</parameter>
+		</constructor>
+		<property name="sourceModuleId">61</property> <property name="destinationModuleId">34</property>
+		<property name="routingLabelFormat"> <inject bean="RoutingLabelFormat" />
+		</property>
+		</bean> -->
+
+	<!-- ==================================================================== -->
+	<!-- Linkset -->
+	<!-- ==================================================================== -->
+	<!-- <bean name="LinksetFactoryFactory" class="org.mobicents.ss7.linkset.oam.LinksetFactoryFactory">
+		<incallback method="addFactory" /> <uncallback method="removeFactory" />
+		</bean> <bean name="DahdiLinksetFactory" class="org.mobicents.ss7.hardware.dahdi.oam.DahdiLinksetFactory">
+		</bean> <bean name="LinksetManager" class="org.mobicents.ss7.linkset.oam.LinksetManagerImpl">
+		<constructor> <parameter>LinksetManager</parameter> </constructor> <property
+		name="scheduler"> <inject bean="SS7Scheduler" /> </property> <property name="linksetFactoryFactory">
+		<inject bean="LinksetFactoryFactory" /> </property> <property name="persistDir">${jboss.server.data.dir}</property>
+		</bean> <bean name="LinksetExecutor" class="org.mobicents.ss7.linkset.oam.LinksetExecutor">
+		<property name="linksetManager"> <inject bean="LinksetManager" /> </property>
 		</bean> -->
 
 	<!-- ==================================================================== -->
@@ -97,10 +131,48 @@
 		</property>
 	</bean>
 
-	<bean name="SccpExecutor"
-		class="org.mobicents.protocols.ss7.sccp.impl.oam.SccpExecutor">
-		<property name="sccpStack">
-			<inject bean="SccpStack" />
+	<bean name="SccpExecutor" class="org.mobicents.protocols.ss7.sccp.impl.oam.SccpExecutor">
+		<property name="sccpStacks">
+			<map keyClass="java.lang.String" valueClass="org.mobicents.protocols.ss7.sccp.impl.SccpStackImpl">
+				<entry>
+					<key>SccpStack</key>
+					<value>
+						<inject bean="SccpStack" />
+					</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- ==================================================================== -->
+	<!-- TCAP Service -->
+	<!-- ==================================================================== -->
+	<bean name="TcapStack" class="org.mobicents.protocols.ss7.tcap.TCAPStackImpl">
+		<constructor>
+			<parameter>TcapStack</parameter>
+			<parameter>
+				<inject bean="SccpStack" property="sccpProvider" />
+			</parameter>
+			<parameter>9</parameter>
+		</constructor>
+		<property name="persistDir">${jboss.server.data.dir}</property>
+		<!--
+		<property name="dialogIdleTimeout">60000</property>
+		<property name="invokeTimeout">30000</property>
+		<property name="maxDialogs">25000</property>
+		-->
+	</bean>
+
+	<bean name="TcapExecutor" class="org.mobicents.protocols.ss7.tcap.oam.TCAPExecutor">
+		<property name="tcapStacks">
+			<map keyClass="java.lang.String" valueClass="org.mobicents.protocols.ss7.tcap.TCAPStackImpl">
+				<entry>
+					<key>TcapStack</key>
+					<value>
+						<inject bean="TcapStack" />
+					</value>
+				</entry>
+			</map>
 		</property>
 	</bean>
 
@@ -119,6 +191,7 @@
 					<inject bean="SccpExecutor" />
 					<inject bean="M3UAShellExecutor" />
 					<inject bean="SCTPShellExecutor" />
+					<inject bean="TcapExecutor" />
 					<!-- <inject bean="EIRShellExecutor" /> -->
 				</list>
 			</parameter>
@@ -126,21 +199,7 @@
 
 		<property name="address">${jboss.bind.address}</property>
 		<property name="port">3435</property>
-	</bean>
-
-	<!-- ==================================================================== -->
-	<!-- TCAP Service -->
-	<!-- ==================================================================== -->
-	<bean name="TcapStack" class="org.mobicents.protocols.ss7.tcap.TCAPStackImpl">
-		<constructor>
-			<parameter>
-				<inject bean="SccpStack" property="sccpProvider" />
-			</parameter>
-			<parameter>9</parameter>
-		</constructor>
-		<property name="dialogIdleTimeout">60000</property>
-		<property name="invokeTimeout">30000</property>
-		<property name="maxDialogs">25000</property>
+		<property name="securityDomain">java:/jaas/jmx-console</property>
 	</bean>
 
 	<!-- ==================================================================== -->
@@ -148,6 +207,7 @@
 	<!-- ==================================================================== -->
 	<bean name="MapStack" class="org.mobicents.protocols.ss7.map.MAPStackImpl">
 		<constructor>
+			<parameter>MapStack</parameter>
 			<parameter>
 				<inject bean="TcapStack" property="provider" />
 			</parameter>
@@ -170,11 +230,11 @@
 	<!-- EIR -->
 	<!-- EirManagement is managing the all EIR server commands -->
 	<!-- ==================================================================== -->
-	<!-- <bean name="EirManagement" class="org.mobicents.eir.smpp.EirManagement"> 
-		<constructor> <parameter>EirManagement</parameter> </constructor> <property 
-		name="persistDir">${jboss.server.data.dir}</property> <property name="smppServer"> 
-		<inject bean="SMPPServer" /> </property> </bean> <bean name="EIRShellExecutor" 
-		class="org.mobicents.eir.smpp.EIRShellExecutor"> <property name="eirManagement"> 
+	<!-- <bean name="EirManagement" class="org.mobicents.eir.smpp.EirManagement">
+		<constructor> <parameter>EirManagement</parameter> </constructor> <property
+		name="persistDir">${jboss.server.data.dir}</property> <property name="smppServer">
+		<inject bean="SMPPServer" /> </property> </bean> <bean name="EIRShellExecutor"
+		class="org.mobicents.eir.smpp.EIRShellExecutor"> <property name="eirManagement">
 		<inject bean="EirManagement" /> </property> </bean> -->
 
 </deployment>

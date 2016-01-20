@@ -1,6 +1,6 @@
 /*
- * TeleStax, Open Source Cloud Communications  Copyright 2012.
- * and individual contributors
+ * TeleStax, Open Source Cloud Communications
+ * Copyright 2012, Telestax Inc and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -31,10 +31,11 @@ import org.jboss.system.ServiceMBeanSupport;
 
 /**
  * @author amit bhayani
+ * @author kulikov
  */
 public class SS7Service extends ServiceMBeanSupport implements SS7ServiceMBean {
 
-	private static final Logger logger = Logger.getLogger(SS7Service.class);
+    private static final Logger logger = Logger.getLogger(SS7Service.class);
 
 	private Object stack;
 
@@ -59,7 +60,7 @@ public class SS7Service extends ServiceMBeanSupport implements SS7ServiceMBean {
 		if (name != null) {
 			return name;
 		} else {
-			return "Mobicents EIR";
+			return "Mobicents EIR Service";
 		}
 	}
 
@@ -68,7 +69,7 @@ public class SS7Service extends ServiceMBeanSupport implements SS7ServiceMBean {
 		if (vendor != null) {
 			return vendor;
 		} else {
-			return "JBoss, a division of Red Hat";
+			return "TeleStax Inc";
 		}
 	}
 
@@ -113,7 +114,7 @@ public class SS7Service extends ServiceMBeanSupport implements SS7ServiceMBean {
 	 */
 	private void rebind(Object stack) throws NamingException {
 		Context ctx = new InitialContext();
-		String tokens[] = jndiName.split("/");
+		String[] tokens = jndiName.split("/");
 
 		for (int i = 0; i < tokens.length - 1; i++) {
 			if (tokens[i].trim().length() > 0) {
@@ -130,7 +131,7 @@ public class SS7Service extends ServiceMBeanSupport implements SS7ServiceMBean {
 
 	/**
 	 * Unbounds object under specified name.
-	 * 
+	 *
 	 * @param jndiName
 	 *            the JNDI name of the object to be unbound.
 	 */
@@ -139,4 +140,7 @@ public class SS7Service extends ServiceMBeanSupport implements SS7ServiceMBean {
 		initialContext.unbind(jndiName);
 	}
 
+	public boolean isStarted() {
+	    return (this.getState() == STARTED);
+	}
 }
