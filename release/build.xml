@@ -10,7 +10,7 @@
 	<property name="protocols.copy.list" value="m3ua,mtp,isup,sccp,tcap,map" />
 
 	<!-- Directories Configuration -->
-	<property name="checkout.basedir" value="checkout" />
+	<property name="checkout.basedir" value="../" />
 	<property name="zip.dir" value="${basedir}/zip" />
 	<property name="zip.file.destination.dir" value="${basedir}/upload" />
 	<property name="zip.file.name" value="mobicents-eir-${release.version}" />
@@ -51,7 +51,7 @@
 
 	<target name="copy" depends="copy-eir" />
 
-	<target name="package" description="Builds binary package." depends="init,clean,checkout,zip.src,build,notes,copy,zip.binary" />
+	<target name="package" description="Builds binary package." depends="init,clean,zip.src,notes,copy,zip.binary" />
 
 	<target name="clean">
 		<echo>Cleaning checkout directory</echo>
@@ -90,27 +90,27 @@
 	<target name="copy-eir">
 		<echo>Copy EIR Server</echo>
 		<copy todir="${zip.dir}/eir/mobicents-eir-server" failonerror="${failoncopy}">
-			<fileset dir="${checkout.basedir}/eir/core//bootstrap/target/mobicents-eir-server">
+			<fileset dir="${checkout.basedir}/core//bootstrap/target/mobicents-eir-server">
 				<include name="**" />
 			</fileset>
 		</copy>
 
 		<echo>Copy EIR SLEE part</echo>
 		<copy todir="${zip.dir}/eir/slee" failonerror="${failoncopy}">
-			<fileset dir="${checkout.basedir}/eir/core/slee/services/du/target/">
+			<fileset dir="${checkout.basedir}/core/slee/services/du/target/">
 				<include name="eir-service-du-${eir.version}.jar" />
 			</fileset>
 		</copy>
 
 		<echo>Copy Docs</echo>
 		<copy todir="${zip.dir}/eir/docs" failonerror="${failoncopy}">
-			<fileset dir="${checkout.basedir}/eir/docs/jdocbook-mobicents/target/docbook/publish">
+			<fileset dir="${checkout.basedir}/docs/jdocbook-mobicents/target/docbook/publish">
 				<include name="**" />
 			</fileset>
 		</copy>
 
 		<echo>Copy Build File</echo>
-		<copy file="${checkout.basedir}/eir/release/release-build.xml" tofile="${zip.dir}/eir/build.xml" failonerror="${failoncopy}" />
+		<copy file="${checkout.basedir}/release/release-build.xml" tofile="${zip.dir}/eir/build.xml" failonerror="${failoncopy}" />
 	</target>
 
 	<target name="zip.binary">
