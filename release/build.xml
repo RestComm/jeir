@@ -51,7 +51,7 @@
 
 	<target name="copy" depends="copy-eir" />
 
-	<target name="package" description="Builds binary package." depends="init,clean,zip.src,notes,copy,zip.binary" />
+	<target name="package" description="Builds binary package." depends="init,zip.src,notes,copy,zip.binary" />
 
 	<target name="clean">
 		<echo>Cleaning checkout directory</echo>
