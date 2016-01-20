@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>org.mobicents.eir</groupId>
 		<artifactId>test</artifactId>
-		<version>1.0.0.ALPHA-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>test-mapmodule</artifactId>

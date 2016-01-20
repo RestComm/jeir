@@ -27,7 +27,7 @@ import org.mobicents.protocols.ss7.map.api.MAPProvider;
 import org.mobicents.protocols.ss7.sccp.impl.SccpStackImpl;
 
 public class MAPSimulator {
-	
+
 	// MAP
 	private MAPStackImpl mapStack;
 	private MAPProvider mapProvider;
@@ -63,7 +63,7 @@ public class MAPSimulator {
 		// Create MAP Stack and register listener
 		this.mapStack = new MAPStackImpl("test" ,this.sccpStack.getSccpProvider(), this.getSsn());
 		this.mapProvider = this.mapStack.getMAPProvider();
-		
+
 		this.mapListener = new MAPListener(this);
 
 		this.mapProvider.addMAPDialogListener(this.mapListener);
@@ -73,12 +73,12 @@ public class MAPSimulator {
 
 		try {
 			this.mapStack.start();
-			this.sccpStack.getSccpProvider().registerSccpListener(1, new MSCSccpListener(mapProvider));
+			this.sccpStack.getSccpProvider().registerSccpListener(1, new MSCSccpListener(mapProvider, sccpStack.getSccpProvider().getParameterFactory()));
 		} catch (Exception e) {
 			throw new RuntimeException("Erro starting map stack", e);
 		}
 	}
-	
+
 	public void stop() {
 		this.mapStack.stop();
 	}

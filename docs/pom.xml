@@ -7,13 +7,13 @@
 	<parent>
 		<groupId>org.mobicents.eir</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.0.ALPHA-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 	<groupId>org.mobicents.eir.docs</groupId>
 	<artifactId>mobicents-eir-docs</artifactId>
 	
-	<name>Mobicents EIR :: Docs :: Parent :: ${pom.artifactId}</name>
+	<name>Mobicents EIR :: Docs :: Parent :: ${project.artifactId}</name>
 	
 	<packaging>pom</packaging>
 
