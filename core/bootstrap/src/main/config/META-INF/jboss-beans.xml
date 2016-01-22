@@ -44,7 +44,7 @@
 	<bean name="Mtp3UserPart" class="org.mobicents.protocols.ss7.m3ua.impl.M3UAManagementImpl">
 		<constructor>
 			<parameter>Mtp3UserPart</parameter>
-			<parameter>TelScale-jEIR</parameter>
+			<parameter>Mobicents-jEIR</parameter>
 		</constructor>
 		<property name="persistDir">${jboss.server.data.dir}</property>
 		<property name="maxSequenceNumber">256</property>
@@ -89,7 +89,7 @@
 	<!-- ==================================================================== -->
 	<!-- <bean name="Mtp3UserPart" class="org.mobicents.ss7.hardware.dialogic.DialogicMtp3UserPart">
 		<constructor>
-			<parameter>TelScale-jEIR</parameter>
+			<parameter>Mobicents-jEIR</parameter>
 		</constructor>
 		<property name="sourceModuleId">61</property> <property name="destinationModuleId">34</property>
 		<property name="routingLabelFormat"> <inject bean="RoutingLabelFormat" />
@@ -180,7 +180,7 @@
 	<!-- Shell Service -->
 	<!-- ==================================================================== -->
 	<!-- Define Shell Executor -->
-	<bean name="ShellExecutor" class="com.telscale.ss7.management.console.ShellServer">
+	<bean name="ShellExecutor" class="org.mobicents.ss7.management.console.ShellServer">
 		<constructor>
 			<parameter>
 				<inject bean="SS7Scheduler" />

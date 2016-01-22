@@ -37,11 +37,11 @@
 
 		<mobicents.core.ext.version>1.0.0.FINAL</mobicents.core.ext.version> <!-- this property is not used. same as mobicents.slee.api.extensions.version in parent -->
 		
-		<mobicents.resources.map.version>2.8.14</mobicents.resources.map.version>
+		<mobicents.resources.map.version>2.8.16</mobicents.resources.map.version>
 		
 		<jslee.ext.version>1.0.0.FINAL</jslee.ext.version> <!--different name but used for same dependency as mobicents.slee.api.extensions.version from parent -->
 
-		<ss7.version>3.0.1322</ss7.version>
+		<ss7.version>3.0.1323</ss7.version>
 		<!-- mobicents but not strictly ss7 -->
 		<asn.version>2.0.3.FINAL</asn.version>
 		<stream.version>1.0.0.CR1</stream.version>
