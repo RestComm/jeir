@@ -22,7 +22,7 @@ Port: 3000
 Configure SS7 on jEIR:
 1) Run the ss7-cli.sh (Mobicents SS7 Management Shell) and connect to TelScale CLI
 
-# cd mobicents-slee-2.8.10.32/extra/mobicents-ss7/mobicents-jss7-3.0.1322/ss7/shell/bin
+# cd mobicents-slee-2.8.12.36/extra/mobicents-ss7/mobicents-jss7-3.0.1322/ss7/shell/bin
 # ss7-cli.bat
 telscale>connect 127.0.0.1 3435
 Connected to TelScale CLI 3.0.1322 TeleStax Authenticating against configured security realm

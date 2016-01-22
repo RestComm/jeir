@@ -17,6 +17,7 @@
 					<inject bean="SccpExecutor" />
 					<inject bean="M3UAShellExecutor" />
 					<inject bean="SCTPShellExecutor" />
+					<inject bean="TcapExecutor" />
 				</list>
 			</parameter>
 		</constructor>
