@@ -23,7 +23,7 @@
 		<eir.scmVersion>HEAD</eir.scmVersion>
 		<eir.scmVersionType>revision</eir.scmVersionType>
 
-		<eir.connectionURL>scm:git:http://code.google.com/p/jeir/</eir.connectionURL>
+		<eir.connectionURL>scm:git:https://github.com/RestComm/jeir.git</eir.connectionURL>
 	</properties>
 
 	<profiles>
