@@ -15,7 +15,7 @@
 	<name>Test</name>
 
 	<properties>
-		<version.jboss.jbossas>5.0.1.GA</version.jboss.jbossas>
+		<version.jboss.jbossas>5.1.0.GA</version.jboss.jbossas>
 		<version.jboss.microcontainer>2.2.0.M2</version.jboss.microcontainer>
 	</properties>
 
@@ -72,11 +72,27 @@
 			<version>${ss7.version}</version>
 		</dependency>
 		<!-- Management Shell -->
-		<!--dependency>
-			<artifactId>shell</artifactId>
+		<dependency>
+			<artifactId>shell-client</artifactId>
 			<groupId>org.mobicents.protocols.ss7.management</groupId>
 			<version>${ss7.version}</version>
-		</dependency-->
+		</dependency>
+		<dependency>
+			<artifactId>shell-server-api</artifactId>
+			<groupId>org.mobicents.protocols.ss7.management</groupId>
+			<version>${ss7.version}</version>
+		</dependency>
+		<dependency>
+			<artifactId>shell-server-impl</artifactId>
+			<groupId>org.mobicents.protocols.ss7.management</groupId>
+			<version>${ss7.version}</version>
+		</dependency>
+		<dependency>
+			<artifactId>shell-transport</artifactId>
+			<groupId>org.mobicents.protocols.ss7.management</groupId>
+			<version>${ss7.version}</version>
+		</dependency>
+
 
 		<!-- Management linkset -->
 		<dependency>
@@ -187,18 +203,6 @@
 			<groupId>javolution</groupId>
 			<artifactId>javolution</artifactId>
 			<version>${javolution.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.microcontainer</groupId>
-			<artifactId>jboss-kernel</artifactId>
-			<version>${version.jboss.microcontainer}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.microcontainer</groupId>
-			<artifactId>jboss-aop-mc-int</artifactId>
-			<version>${version.jboss.microcontainer}</version>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

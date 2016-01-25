@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<heartbeattime value="10000"/>
 <aspFactoryList>
-	<aspFactory name="ASP1" assocName="SCTPAssoc1" started="true" maxseqnumber="256" aspid="3"/>
+	<aspFactory name="ASP1" assocName="SCTPAssoc1" started="true" maxseqnumber="256" aspid="3" heartbeat="false"/>
 </aspFactoryList>
 <asList>
 	<as name="AS1" minAspActiveForLb="1" functionality="IPSP" exchangeType="SE" ipspType="SERVER">
@@ -16,5 +17,5 @@
 </asList>
 <route>
 	<key value="1:-1:-1"/>
-	<value value="AS1"/>
+	<routeAs trafficModeType="2" as="AS1"/>
 </route>
