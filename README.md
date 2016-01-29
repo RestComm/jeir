@@ -7,6 +7,9 @@ jEIR is built on [RestComm jSS7](https://github.com/RestComm/jSS7).
 
 jEIR is lead by [TeleStax](http://www.telestax.com/), Inc. and developed collaboratively by a community of individual and enterprise contributors.
 
+## Downloads
+
+Download source code and build from [here](https://github.com/RestComm/jeir/releases) or Continuous Delivery binary from [CloudBees](https://mobicents.ci.cloudbees.com/job/RestComm-jEIR/)
 
 Install on Ubuntu 14.04 from Source
 ========
