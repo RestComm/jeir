@@ -122,7 +122,7 @@
 
 		<!-- Hardware Dialogic Java -->
 		<dependency>
-			<artifactId>mobicents-dialogic</artifactId>
+			<artifactId>restcomm-dialogic</artifactId>
 			<groupId>org.mobicents.protocols.ss7.hardware</groupId>
 			<version>${ss7.version}</version>
 		</dependency>
@@ -221,7 +221,7 @@
 					<descriptors>
 						<descriptor>src/main/assembly/descriptor.xml</descriptor>
 					</descriptors>
-					<finalName>mobicents-eir</finalName>
+					<finalName>restcomm-eir</finalName>
 				</configuration>
 				<executions>
 					<execution>
@@ -248,11 +248,11 @@
 									${jboss.home}server/default/deploy
 								</echo>
 								<echo>
-									${project.build.directory}/mobicents-eir-server
+									${project.build.directory}/restcomm-eir-server
 								</echo>
 								<copy
-									todir="${jboss.home}/server/${node}/deploy/mobicents-eir-server">
-									<fileset dir="${project.build.directory}/mobicents-eir-server">
+									todir="${jboss.home}/server/${node}/deploy/restcomm-eir-server">
+									<fileset dir="${project.build.directory}/restcomm-eir-server">
 
 									</fileset>
 								</copy>
@@ -269,7 +269,7 @@
 							<tasks>
 								<delete failonerror="false" includeemptydirs="true">
 									<fileset
-										dir="${jboss.home}/server/${node}/deploy/mobicents-eir-server" />
+										dir="${jboss.home}/server/${node}/deploy/restcomm-eir-server" />
 								</delete>
 							</tasks>
 						</configuration>

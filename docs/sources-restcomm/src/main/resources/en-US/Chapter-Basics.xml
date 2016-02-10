@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "EIR_Server_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<chapter id="basics">
+	<title>The Basics of &THIS.PLATFORM; jEIR</title>
+	<section id="jEIR_message_exchange">
+	<title>EIR Message Exchange</title>
+	<para>
+		The message exchange between a MSC and an EIR is through a <literal>MAP</literal> message called <literal>checkIMEI</literal>. It carries the IMEI of the MS and optionally other subscriber information such as MSISDN and/or IMSI (International Mobile Subscriber Identity). The EIR verifies the IMEI in question against the database of IMEIs and returns the information accordingly. The three possible return types are <literal>whiteList</literal>, <literal>blackList</literal> and <literal>grayList</literal>. If the IMEI is found in the list of banned equipments (<literal>blackList</literal>), the mobile station will not be allowed to register at the MSC. The images below depict this information exchange and the possible return types. 
+		  	</para>
+		  	<mediaobject id="eir-connection-example1.png">
+                    <imageobject>
+                            <imagedata width="450px" align="center" fileref="images/eir-connection-example1.png" format="PNG" />
+                    </imageobject>
+                    <caption>
+                            <para>Message Exchange between EIR and MSC</para>
+                    </caption>
+            </mediaobject>
+            <mediaobject id="eir-return-types.png">
+                    <imageobject>
+                            <imagedata width="450px" align="center" fileref="images/eir-return-types.png" format="PNG" />
+                    </imageobject>
+                    <caption>
+                            <para>EIR Return Types</para>
+                    </caption>
+            </mediaobject>
+	</section>
+	<section id="eir_server_overview">
+			<title>EIR Architecture</title>
+			<para>
+				&THIS.PLATFORM; jEIR is built on top of &THIS.PLATOFRM; jSS7 and uses the Cassandra database to persist data.
+			 &THIS.PLATFORM; jEIR has high CAPs because depending on the MSC configuration, every time a mobile is turned on and in some cases each hour, a new <literal>checkIMEI</literal> request is performed. This is made possible by the jEIR architecture which supports high CAPs.  &THIS.PLATFORM; jEIR has short simultaneous calls because the EIR just queries the database about the IMEI in question and returns the result accordingly(<literal>whiteList</literal>, <literal>blackList</literal> or <literal>grayList</literal>). For logging purposes the EIR is capable of handling a high volume of data to allow storing every request to the EIR. 
+            </para>
+			<mediaobject id="eir-architecture.png">
+                    <imageobject>
+                            <imagedata width="400px" align="center" fileref="images/eir-architecture.png" format="PNG" />
+                    </imageobject>
+                    <caption>
+                            <para>EIR Architecture</para>
+                    </caption>
+            </mediaobject>
+	</section>
+    
+</chapter>

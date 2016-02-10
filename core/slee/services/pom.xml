@@ -22,8 +22,8 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.mobicents.resources</groupId>
-				<artifactId>mobicents-slee-ra-map-ratype</artifactId>
-				<version>${mobicents.resources.map.version}</version>
+				<artifactId>restcomm-slee-ra-map-ratype</artifactId>
+				<version>${restcomm.resources.map.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

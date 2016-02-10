@@ -1,0 +1,132 @@
+<?xml version='1.0'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "EIR_Server_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<chapter id="setup">
+	<title>Installation</title>
+	<section id="installing_and_using">
+		<title>Installing &THIS.PLATFORM; jEIR</title>
+		<para>A simple way to get started is to download and install the binary. This will provide you with all the dependencies you need to get going. Alternatively you can build from the source code and stay on top with the latest features. This chapter discusses both these methods of installation.
+		</para>		
+		<section id="binary">
+			<title>Binary Installation</title>
+			<para>You can obtain the binary release from &THIS.RELEASE_BINARY_URL;. When you download and unzip the file you will find the top directory named as <filename>&THIS.PLATFORM;-EIR-version</filename>. The binary requires that you have the <literal>JBOSS_HOME</literal> environment variable set properly to point to the JSLEE installed. You must also ensure that the SS7 links are installed and configured appropriately following the instructions in the SS7 documentation included within.</para>
+
+			<para>The Mobicents jEIR Server is broken down into two modules and the binary layout is as depicted in the figure below:</para>
+			
+			<mediaobject id="binary_layout">
+            	<imageobject>
+                	<imagedata width="241px" align="center" fileref="images/binnar-structure.png" format="PNG" />
+                </imageobject>
+                <caption>
+                	<para>&THIS.PLATFORM; &THIS.APPLICATION; Binary Layout</para>
+                </caption>
+        	</mediaobject>
+        	<note>
+            	<title>Note</title>
+                <para>X.Y.Z in above layout is the respective release version of binary.</para>
+            </note>
+<!--<programlisting>
+[usr]$ ant
+</programlisting>
+				
+-->
+	 </section>
+		
+		<section id="setup_source">
+			<title>Setup from source</title>
+			<para>The &THIS.PLATFORM; &THIS.APPLICATION; is an open source project and offers you the flexibility to build from source. Building from source means you can stay on top with the latest features.</para>
+
+			<para>&THIS.PLATFORM; &THIS.APPLICATION; works with JDK1.7 and above. You will also need to have the following tools installed.</para>
+			
+			<itemizedlist>
+				<listitem>
+					<para><literal>Git Client 1.6</literal> : Instructions for using GIT, including install, can be found at <ulink
+									url="http://git-scm.com/book" /></para>
+				</listitem>		
+				<listitem>
+					<para><literal>Maven 2.2.1</literal> : Instructions for using Maven, including install, can be found at <ulink
+									url="http://maven.apache.org/" /></para>
+				</listitem>	
+				<listitem>
+					<para><literal>Ant 1.7.0</literal> : Instructions for using Ant, including install, can be found at <ulink
+									url="http://ant.apache.org" /></para>
+				</listitem>	
+			</itemizedlist>
+			
+			<section
+			id="source_building">
+			<title>Release Source Code Building</title>
+			<procedure>
+				<step>
+					<title>Downloading the source code</title>
+					
+					<para>Use GIT to clone the repository, the base URL is &THIS.TRUNK_SOURCE_CODE_URL;,
+						then to checkout a specific release version (tag) use the command <command>git checkout tag_name</command>. Say for example you would like to checkout the version release-&THIS.VERSION; then the command would be as follows:
+					</para>
+					<programlisting>
+[usr]$ git clone &THIS.TRUNK_SOURCE_CODE_URL;
+[usr]$ cd jeir
+[usr]$ git checkout release-&THIS.VERSION;
+					</programlisting>
+				<!--	<para>Browse the code online at <ulink url="&THIS.RELEASE_SOURCE_CODE_URL;" /> </para>-->
+				</step>
+				<step>
+					<title>Building the source code</title>
+					
+					<para>Now that we have the source the next step is to build and install the source. 
+					&THIS.PLATFORM; &THIS.APPLICATION; uses Maven 2 to build the system.
+					</para>
+										
+					<programlisting>
+[usr]$ cd jeir
+[usr]$ mvn clean install
+				    </programlisting>
+				    
+					<para>Use Ant to build the binary .</para>
+					<programlisting>
+[usr]$ cd jeir/release
+[usr]$ ant
+				    </programlisting>
+
+				</step>
+			</procedure>
+		</section>
+			
+		</section>
+	</section>
+	
+	<section id="installing_persistence_system">
+		<title>Installing Apache Cassandra Database</title>
+		<para>Download the binary package from <ulink url="http://cassandra.apache.org/download/" />. Unzip the file and run the below command:</para>
+		<programlisting>
+./cassandra -f
+		</programlisting>
+		
+		<section id="create_keyspace_cassandra">
+			<title>Creating the keyspace at Apache Cassanra</title>
+			<para>Use the below command to access the Cassandra CLI.</para>
+			<programlisting> 
+$./cqlsh --cql3 
+			</programlisting>
+			<para>Then type the following commands:</para>
+			
+			<programlisting>
+CREATE KEYSPACE eirdb WITH strategy_class = 'org.apache.cassandra.locator.SimpleStrategy' AND strategy_options:replication_factor='1';
+use eirdb;
+CREATE TABLE blacklist(imei varchar, imsi varchar, PRIMARY KEY (imei));
+			</programlisting>
+		</section>
+		
+		<section id="inserting_imeis_cassandra">
+			<title>Inserting IMEI in blackList</title>
+			<para>To be able insert a new IMEI to be blocked in EIR, you should insert the value in the Cassandra database with the command below.</para>
+			<programlisting>
+INSERT INTO blacklist (imei, imsi) values ('111111111111111', '222222222222222');
+			</programlisting>
+		</section>
+	</section>
+	
+</chapter>

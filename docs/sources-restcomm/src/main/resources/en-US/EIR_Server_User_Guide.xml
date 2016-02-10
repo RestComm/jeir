@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+]>
+
+<book>
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="Book_Info.xml" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="common/Preface.xml" />
+	
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="Chapter-Introduction.xml" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="Chapter-Basics.xml" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="Chapter-Source_Build_Binary.xml" />
+	
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="common/Java_Development_Kit-Installing_Configuring_and_Running.xml"/>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="common/Setting_the_JBOSS_HOME_Environment_Variable.xml"/>
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="Revision_History.xml"/>
+	
+	<index />
+</book>
+

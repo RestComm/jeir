@@ -6,15 +6,15 @@
 	
 	<parent>
 		<groupId>org.mobicents</groupId>
-		<artifactId>mobicents-parent</artifactId>
-		<version>2.27.21</version>
+		<artifactId>restcomm-parent</artifactId>
+		<version>2.27.32</version>
 	</parent>
 	
 	<groupId>org.mobicents.eir</groupId>
 	<artifactId>parent</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	
-	<name>Mobicents EIR Parent</name>
+	<name>Restcomm EIR Parent</name>
 	
 	<properties>
 		<!-- RELEASE CONFIGURATION -->
@@ -35,24 +35,24 @@
 		<concurrent.version>1.3.4</concurrent.version>
 		<mvel.dep.version>2.0.10</mvel.dep.version>
 
-		<mobicents.core.ext.version>1.0.0.FINAL</mobicents.core.ext.version> <!-- this property is not used. same as mobicents.slee.api.extensions.version in parent -->
+		<restcomm.core.ext.version>1.0.0.FINAL</restcomm.core.ext.version> <!-- this property is not used. same as mobicents.slee.api.extensions.version in parent -->
 		
-		<mobicents.resources.map.version>2.8.17</mobicents.resources.map.version>
+		<restcomm.resources.map.version>2.8.24</restcomm.resources.map.version>
 		
 		<jslee.ext.version>1.0.0.FINAL</jslee.ext.version> <!--different name but used for same dependency as mobicents.slee.api.extensions.version from parent -->
 
-		<ss7.version>3.0.1324</ss7.version>
-		<!-- mobicents but not strictly ss7 -->
+		<ss7.version>3.0.1335</ss7.version>
+		<!-- restcomm but not strictly ss7 -->
 		<asn.version>2.0.3.FINAL</asn.version>
 		<stream.version>1.0.0.CR1</stream.version>
-		<sctp.version>1.6.0.FINAL</sctp.version>
+		<sctp.version>1.7.2</sctp.version>
 		<commons.version>1.0.0.CR1</commons.version>
 		<dialogic.version>6.7.1</dialogic.version>
 
 		<!-- client for Cassandra -->
 		<hector.core.version>1.0-4</hector.core.version>
 
-		<application.name>mobicents-eir</application.name>
+		<application.name>restcomm-eir</application.name>
 	</properties>
 
 	<modules>
@@ -133,7 +133,7 @@
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<groupId>org.mobicents.tools</groupId>
 				<version>
-					${mobicents.tools.mavenplugin.eclipse.version}
+					${restcomm.tools.mavenplugin.eclipse.version}
 				</version>
 				<inherited>false</inherited>
 				<executions />

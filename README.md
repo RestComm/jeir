@@ -42,15 +42,15 @@ su user
 cd ~
 mkdir RestComm
 cd RestComm
-# Download from https://mobicents.ci.cloudbees.com/job/Mobicents-JAIN-SLEE-Release/
-unzip ~/mobicents-slee-2.8.12.36.zip	
+# Download from https://mobicents.ci.cloudbees.com/job/Restcomm-JAIN-SLEE-Release/
+unzip ~/restcomm-slee-2.8.26.56.zip	
 ```
 
 Setup JBOSS
 ```
 vi ~/.profile
 #
-JBOSS_HOME=/home/user/mobicents-slee-2.8.12.36/jboss-5.1.0.GA
+JBOSS_HOME=/home/user/restcomm-slee-2.8.26.56/jboss-5.1.0.GA
 export JBOSS_HOME
 #
 

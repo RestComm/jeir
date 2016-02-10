@@ -103,7 +103,7 @@
 
 		<!-- Hardware Dialogic Java -->
 		<dependency>
-			<artifactId>mobicents-dialogic</artifactId>
+			<artifactId>restcomm-dialogic</artifactId>
 			<groupId>org.mobicents.protocols.ss7.hardware</groupId>
 			<version>${ss7.version}</version>
 		</dependency>

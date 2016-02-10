@@ -20,8 +20,8 @@
 	</pathconvert>
 
 	<target name="deploy">
-		<copy overwrite="true" todir="${jboss.deploy}/mobicents-eir-server">
-			<fileset dir="./mobicents-eir-server">
+		<copy overwrite="true" todir="${jboss.deploy}/restcomm-eir-server">
+			<fileset dir="./restcomm-eir-server">
 				<include name="**" />
 			</fileset>			
 		</copy>
@@ -32,7 +32,7 @@
 	</target>
 
 	<target name="undeploy">
-		<delete dir="${jboss.deploy}/mobicents-eir-server" />
+		<delete dir="${jboss.deploy}/restcomm-eir-server" />
 		<delete file="${jboss.deploy}/eir-service-du-*"/>
 	</target>
 

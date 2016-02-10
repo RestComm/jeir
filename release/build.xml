@@ -13,7 +13,7 @@
 	<property name="checkout.basedir" value="../" />
 	<property name="zip.dir" value="${basedir}/zip" />
 	<property name="zip.file.destination.dir" value="${basedir}/upload" />
-	<property name="zip.file.name" value="mobicents-eir-${release.version}" />
+	<property name="zip.file.name" value="restcomm-eir-${release.version}" />
 	<property name="failoncopy" value="true" />
 	<property name="test.skip" value="true" />
 	
@@ -65,7 +65,7 @@
 	<target name="checkout-sources">
 		<echo>Checking out sources</echo>
 		<mkdir dir="${checkout.basedir}" />
-		<exec executable="${mvn.executable}" dir="${ant.file.mobicents.release}/../">
+		<exec executable="${mvn.executable}" dir="${ant.file.restcomm.release}/../">
 			<arg line="validate -P checkout -Dcheckout.dir=${checkout.basedir}" />
 		</exec>
 	</target>
@@ -89,8 +89,8 @@
 
 	<target name="copy-eir">
 		<echo>Copy EIR Server</echo>
-		<copy todir="${zip.dir}/eir/mobicents-eir-server" failonerror="${failoncopy}">
-			<fileset dir="${checkout.basedir}/core//bootstrap/target/mobicents-eir-server">
+		<copy todir="${zip.dir}/eir/restcomm-eir-server" failonerror="${failoncopy}">
+			<fileset dir="${checkout.basedir}/core//bootstrap/target/restcomm-eir-server">
 				<include name="**" />
 			</fileset>
 		</copy>
@@ -104,7 +104,7 @@
 
 		<echo>Copy Docs</echo>
 		<copy todir="${zip.dir}/eir/docs" failonerror="${failoncopy}">
-			<fileset dir="${checkout.basedir}/docs/jdocbook-mobicents/target/docbook/publish">
+			<fileset dir="${checkout.basedir}/docs/jdocbook-restcomm/target/docbook/publish">
 				<include name="**" />
 			</fileset>
 		</copy>

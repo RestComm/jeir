@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "EIR_Server_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<chapter id="introduction">
+	<title>Introduction</title>
+	<section id="jeir_overview">
+    	<title>&THIS.PLATFORM; jEIR Overview</title>
+		<para>
+&THIS.PLATFORM; jEIR (Java EIR) is the only Open Source Java implementation of EIR (Equipment Identity Register). It is built on top of &THIS.PLATFORM; jSS7, a software based implementation of the SS7 protocol. &THIS.PLATFORM; jSS7 provides implementation for Level 2 and above in the SS7 protocol Stack. Please refer to the &THIS.PLATFORM; jSS7 Stack User Guide for more details on the Stack.
+		</para>
+		<para>
+&THIS.PLATFORM; jEIR supports TDM hardware offered by major vendors in the market, namely Intel family boards (Dialogic) and Zaptel/Dahdi
+(Digium, Sangoma). Since &THIS.PLATFORM; jEIR is Java based, it is cross-platform and can be installed and used on any Operating System that supports Java. The Open Source Software gives you the flexibility to understand the readily available source code and customise the product for your Enterprise needs. 
+		</para>
+		<para>
+			jEIR is lead by TeleStax, Inc. and developed collaboratively by a community of individual and enterprise contributors. 
+		</para>
+    </section>
+    
+   <section id="eir_overview">
+			<title>EIR Overview</title>
+		  	<para>
+		  		An EIR (Equipment Identity Register) is an important network element connected to the MSC (Mobile SoftSwitch Center). It allows mobile operators to protect their customers and controll access to mobile networks by identifying stolen and fraudulent devices. In some countries this may be mandated by the law as well.
+		  	</para>
+			<para>
+				The EIR is a database that contains a record of all the mobile stations (MS) that are allowed in a network as well as a database of all the blacklisted handsets (lost or stolen cellphones). A mobile station (MS) is identified by a number, usually unique and referred to as IMEI (International Mobile Equipment Identity). Each time a call is made, the MSC requests the IMEI of the mobile station, which is then send to the EIR for authorization. If the EIR finds the IMEI in the list of banned devices then mobile will not be allowed to register at the MSC and will not be allowed in the network.
+			</para>
+  </section>
+	
+</chapter>
