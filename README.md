@@ -1,4 +1,6 @@
 # jeir
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FRestComm%2Fjeir.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FRestComm%2Fjeir?ref=badge_shield)
+
 The Equipment Identity Register (EIR) is a database that contains a record of the all the mobile stations (MS)that are allowed in a network as well as an database of all equipment that is banned, e.g. because it is lost or stolen.
 
 The identity of the mobile station is given by the International Mobile Equipment Identity (IMEI). Each time a call is made, the MSC requests the IMEI of the mobile station, which is then send to the EIR for authorisation.
@@ -111,3 +113,7 @@ RestComm jEIR is licensed under dual license policy. The default license is the 
 Acknowledgements
 ========
 [See who has been contributing to RestComm](http://www.telestax.com/opensource/acknowledgments/)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FRestComm%2Fjeir.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FRestComm%2Fjeir?ref=badge_large)
