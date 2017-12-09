@@ -1,19 +1,19 @@
 Manifest-Version: 1.0
 Archiver-Version: Plexus Archiver
 Created-By: Apache Maven Bundle Plugin
-Built-By: jean
-Build-Jdk: 1.7.0_80
+Built-By: ubuntu
+Build-Jdk: 1.8.0_131
+Bundle-Description: Restcomm :: Parent pom for 2.x releases
 Implementation-Title: org.mobicents.eir.docs:restcomm-eir-docs-sources
-Implementation-Version: 1.0.0-SNAPSHOT
+Bundle-License: http://www.gnu.org/licenses/lgpl-2.1.html
+Bundle-SymbolicName: org.mobicents.eir.docs.restcomm-eir-docs-sources
+Implementation-Version: 1.1.0-87
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1512791335773
+Implementation-Vendor-Id: TeleStax, Inc.
 Tool: Bnd-1.15.0
+Bundle-Version: 1.1.0.87
 Bundle-Name: Restcomm EIR :: Docs :: Sources :: restcomm-eir-docs-sour
  ces
 Implementation-URL: http://www.restcomm.org
-Implementation-Vendor-Id: TeleStax, Inc.
-Bundle-Version: 1.0.0.SNAPSHOT
-Bnd-LastModified: 1455104185679
-Bundle-ManifestVersion: 2
-Bundle-License: http://www.gnu.org/licenses/lgpl-2.1.html
-Bundle-Description: Restcomm :: Parent pom for 2.x releases
-Bundle-SymbolicName: org.mobicents.eir.docs.restcomm-eir-docs-sources
 
